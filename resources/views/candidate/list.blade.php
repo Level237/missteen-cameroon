@@ -14,7 +14,7 @@ Listes des candidates
     <h2 class="text-5xl max-sm:text-4xl font-bold text-white max-sm:text-center">Candidates</h2>
     </div>
     </section>
-   <section class="h-10 bg-[#f1c802]">
+   <section class="h-10 bg-[#0f042d]">
 
     </section>
     <section class="grid mx-[6rem] mt-12 grid-cols-3 gap-5 max-sm:grid-cols-1">

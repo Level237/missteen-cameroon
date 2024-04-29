@@ -13,7 +13,7 @@ Inscription
     <h2 class="text-5xl max-sm:text-4xl font-bold text-white max-sm:text-center"> Inscription</h2>
     </div>
     </section>
-   <section class="h-10 bg-[#f1c802]">
+   <section class="h-10 bg-[#0f042d]">
 
     </section>
 
