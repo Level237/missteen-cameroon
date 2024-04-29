@@ -7,31 +7,21 @@
     <title>Connexion</title>
     <link rel="icon" href="favicon.ico"><link href="{{ asset('assets/css/backend/style.css') }}" rel="stylesheet"></head>
 </head>
-<body class="overflow-y-hidden">
-    <main class="">
-        <div class="">
+<body class="overflow-y-hidden mt-36">
+    <main class="p-96">
+        <div class="mt-36">
           <div
-            class="rounded-sm border   border-stroke  shadow-default dark:border-strokedark dark:bg-boxdark"
+            class="rounded-sm border mb-36   border-stroke  shadow-default dark:border-strokedark dark:bg-boxdark"
+
           >
-            <div class="flex flex-wrap ">
-              <div class="hidden h-[100vh]  w-full xl:block xl:w-1/2">
-                <div class=" text-center">
-                  <a class="mb-5.5 inline-block" href="index.html">
+            <div class="flex flex-wrap mt-36">
+              <div class="hidden h-[100vh]   w-full xl:block xl:w-1/2"   style="background-image: url('assets/img/miss.jpg');background-position:center">
 
-                    <img
-                      class="dark:hidden h-[100vh] w-screen object-cover object-center"
-                      src="{{ asset('assets/img/miss.jpg') }}"
-                      alt="Logo"
-                    />
-                  </a>
-
-
-                </div>
               </div>
               <div
-                class="w-full flex justify-center items-center  border-stroke dark:border-strokedark xl:w-1/2 xl:border-l-2"
+                class="w-full mt-36 flex justify-center items-center  border-stroke dark:border-strokedark xl:w-1/2 xl:border-l-2"
               >
-                <div class="w-full p-4 sm:p-12.5 xl:p-17.5">
+                <div class="w-full h-full p-4 sm:p-12.5 xl:pb-17.5" style="height: 100vh;margin-top:5rem" >
 
                   <h2
                     class="mb-9 text-2xl text-center font-bold text-black dark:text-white sm:text-title-xl2"
@@ -114,7 +104,7 @@
 
 
 
-                    <div class="mb-5">
+                    <div class="mb-36">
                       <input
                         type="submit"
                         value="Login"

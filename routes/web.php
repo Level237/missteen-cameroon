@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,7 @@ Route::get('/', function () {
     return view('Homepage');
 });
 
+Route::get('/inscription',[PageController::class,'inscription'])->name('inscription');
 Route::get('test',function(){
     return view('test');
 });
