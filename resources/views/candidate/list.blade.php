@@ -6,8 +6,8 @@ Listes des candidates
 
 @section('content')
 
-<section class="relative h-[60vh] bg-left bg-cover bg-[url('asset('bg.png')')]" style="background-image: url('assets/img/bg.png');background-position:center">
-    <div class="flex items-center justify-center absolute inset-0 bg-gradient-to-r from-neutral-600 to-yellow-600 w-100 opacity-[0.9]">
+<section class="relative  h-[60vh] bg-left bg-cover bg-[url('asset('bg.png')')]" style="background-image: url('assets/img/bg.png');background-position:center">
+    <div class="flex items-center justify-center absolute inset-0 bg-gradient-to-r from-neutral-600 to-[#0f042d] w-100 opacity-[0.9]">
 
     </div>
     <div class="absolute inset-0 flex items-center justify-center">
@@ -17,7 +17,8 @@ Listes des candidates
    <section class="h-10 bg-[#0f042d]">
 
     </section>
-    <section class="grid mx-[6rem] mt-12 grid-cols-3 gap-5 max-sm:grid-cols-1">
+    <
+    <section class="grid mb-36 mx-[6rem] mt-12 grid-cols-3 gap-5 max-sm:grid-cols-1">
         <div class="flex flex-col bg-gray-300 rounded-2xl py-12  items-center">
             <div class="flex justify-between items-center gap-4">
                 <img class="w-[7rem] h-[7rem] rounded-full" src="{{ asset('assets/img/miss.jpg') }}" alt="">

@@ -6,7 +6,7 @@ Inscription
 
 @section('content')
 <section class="relative h-[60vh] bg-left bg-cover bg-[url('asset('bg.png')')]" style="background-image: url('assets/img/bg.png');background-position:center">
-    <div class="flex items-center justify-center absolute inset-0 bg-gradient-to-r from-neutral-600 to-yellow-600 w-100 opacity-[0.9]">
+    <div class="flex items-center justify-center absolute inset-0 bg-gradient-to-r from-neutral-600 to-[#0f042d] w-100 opacity-[0.9]">
 
     </div>
     <div class="absolute inset-0 flex items-center justify-center">
