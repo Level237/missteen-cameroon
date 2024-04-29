@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('votes', function (Blueprint $table) {
             $table->id();
-            $table->boolean('is_paid')->default(false);
+            $table->boolean('isPaid')->default(false);
             $table->foreignIdFor(Candidate::class)
             ->constrained()
             ->restrictOnDelete()
