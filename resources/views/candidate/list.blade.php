@@ -17,7 +17,7 @@ Listes des candidates
    <section class="h-10 bg-[#0f042d]">
 
     </section>
-    <
+
     <section class="grid mb-36 mx-[6rem] mt-12 grid-cols-3 gap-5 max-sm:grid-cols-1">
         <div class="flex flex-col bg-gray-300 rounded-2xl py-12  items-center">
             <div class="flex justify-between items-center gap-4">
@@ -30,7 +30,7 @@ Listes des candidates
                     <div>
                         <p>Ville: <span class="font-bold">Douala</span></p>
                     </div>
-                    <button class="bg-[#0f042d]  text-white px-2 mt-2 py-1 rounded-md">Voter</button>
+                    <a href="{{ route('candidate.profile') }}" class="bg-[#0f042d] text-center  text-white px-2 mt-2 py-1 rounded-md">Voter</a>
                 </div>
 
             </div>
@@ -47,23 +47,7 @@ Listes des candidates
                     <div>
                         <p>Ville: <span class="font-bold">Douala</span></p>
                     </div>
-                    <button class="bg-[#0f042d]  text-white px-2 mt-2 py-1 rounded-md">Voter</button>
-                </div>
-            </div>
-
-        </div>
-        <div class="flex flex-col bg-gray-300 rounded-2xl py-12  items-center">
-            <div class="flex justify-between items-center gap-4">
-                <img class="w-[7rem] h-[7rem] rounded-full" src="{{ asset('assets/img/miss.jpg') }}" alt="">
-                <div class="flex flex-col">
-                    <h2 class="text-xl font-bold">Ongolo Carine</h2>
-                    <div>
-                        <p>Age: <span class="font-bold">23 ans</span></p>
-                    </div>
-                    <div>
-                        <p>Ville: <span class="font-bold">Douala</span></p>
-                    </div>
-                    <button class="bg-[#0f042d]  text-white px-2 mt-2 py-1 rounded-md">Voter</button>
+                    <a href="{{ route('candidate.profile') }}" class="bg-[#0f042d] text-center  text-white px-2 mt-2 py-1 rounded-md">Voter</a>
                 </div>
             </div>
 
@@ -95,7 +79,7 @@ Listes des candidates
                     <div>
                         <p>Ville: <span class="font-bold">Douala</span></p>
                     </div>
-                    <button class="bg-[#0f042d]  text-white px-2 mt-2 py-1 rounded-md">Voter</button>
+                    <a href="{{ route('candidate.profile') }}" class="bg-[#0f042d] text-center  text-white px-2 mt-2 py-1 rounded-md">Voter</a>
                 </div>
             </div>
 
@@ -111,7 +95,23 @@ Listes des candidates
                     <div>
                         <p>Ville: <span class="font-bold">Douala</span></p>
                     </div>
-                    <button class="bg-[#0f042d]  text-white px-2 mt-2 py-1 rounded-md">Voter</button>
+                    <a href="{{ route('candidate.profile') }}" class="bg-[#0f042d] text-center  text-white px-2 mt-2 py-1 rounded-md">Voter</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="flex flex-col bg-gray-300 rounded-2xl py-12  items-center">
+            <div class="flex justify-between items-center gap-4">
+                <img class="w-[7rem] h-[7rem] rounded-full" src="{{ asset('assets/img/miss.jpg') }}" alt="">
+                <div class="flex flex-col">
+                    <h2 class="text-xl font-bold">Ongolo Carine</h2>
+                    <div>
+                        <p>Age: <span class="font-bold">23 ans</span></p>
+                    </div>
+                    <div>
+                        <p>Ville: <span class="font-bold">Douala</span></p>
+                    </div>
+                     <a href="{{ route('candidate.profile') }}" class="bg-[#0f042d] text-center  text-white px-2 mt-2 py-1 rounded-md">Voter</a>
                 </div>
             </div>
 

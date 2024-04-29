@@ -24,6 +24,8 @@ Route::get('test',function(){
     return view('test');
 });
 
+Route::get('/profile/candidate',[PageController::class,'profile'])->name('candidate.profile');
+
 Route::get('/candidates',[PageController::class,'candidates'])->name('candidate.list');
 Route::get('/dashboard', function () {
     return view('dashboard');

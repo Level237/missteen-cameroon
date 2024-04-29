@@ -13,4 +13,8 @@ class PageController extends Controller
     public function candidates(){
         return view('candidate.list');
     }
+
+    public function profile(){
+        return view('candidate.profile');
+    }
 }
