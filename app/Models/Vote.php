@@ -10,6 +10,11 @@ class Vote extends Model
 {
     use HasFactory;
 
+    protected $fillable=[
+        'isPaid',
+        'candidate_id',
+    ];
+
     public function candidate(){
         return $this->belongsTo(Candidate::class);
     }
