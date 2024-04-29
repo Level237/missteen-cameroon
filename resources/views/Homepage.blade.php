@@ -12,10 +12,10 @@
 
 <nav class="bg-[#14121ade] backdrop-blur fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
-    <a href="https://flowbite.com/" class="">
-        <img src="{{ asset('assets/img/logo.png') }}" class="h-[3.5rem]" alt="Flowbite Logo">
+        <a href="https://flowbite.com/" class="">
+            <img src="{{ asset('assets/img/logo.png') }}" class="h-[3.9rem]" alt="Flowbite Logo">
 
-    </a>
+        </a>
     <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
         <button type="button" class=" bg-[#f1c802] hover:bg-[#f1c802] text-black focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-4 py-2 text-center">Postuler</button>
         <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
