@@ -17,6 +17,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/index-seven', function () {
+    return view('index-seven');
+});
+
+Route::get('/miss-list', function () {
+    return view('miss-list');
+});
+Route::get('/curve-list', function () {
+    return view('curve-list');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
