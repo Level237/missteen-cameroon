@@ -310,7 +310,7 @@ class="sticky top-0 z-999 flex w-full bg-white drop-shadow-1 dark:bg-boxdark dar
                 href="messages.html"
               >
                 <div class="h-12.5 w-12.5 rounded-full">
-                  <img src="src/images/user/user-02.png" alt="User" />
+                  <img src="{{ asset('assets/img/backend/admin.jpeg') }}" alt="User" />
                 </div>
 
                 <div>
@@ -328,7 +328,7 @@ class="sticky top-0 z-999 flex w-full bg-white drop-shadow-1 dark:bg-boxdark dar
                 href="messages.html"
               >
                 <div class="h-12.5 w-12.5 rounded-full">
-                  <img src="src/images/user/user-01.png" alt="User" />
+                  <img src="{{ asset('assets/img/backend/admin.jpeg') }}" alt="User" />
                 </div>
 
                 <div>
@@ -346,7 +346,7 @@ class="sticky top-0 z-999 flex w-full bg-white drop-shadow-1 dark:bg-boxdark dar
                 href="messages.html"
               >
                 <div class="h-12.5 w-12.5 rounded-full">
-                  <img src="src/images/user/user-03.png" alt="User" />
+                  <img src="{{ asset('assets/img/backend/admin.jpeg') }}" alt="User" />
                 </div>
 
                 <div>
@@ -364,7 +364,7 @@ class="sticky top-0 z-999 flex w-full bg-white drop-shadow-1 dark:bg-boxdark dar
                 href="messages.html"
               >
                 <div class="h-12.5 w-12.5 rounded-full">
-                  <img src="src/images/user/user-04.png" alt="User" />
+                  <img src="{{ asset('assets/img/backend/admin.jpeg') }}" alt="User" />
                 </div>
 
                 <div>
@@ -414,13 +414,13 @@ class="sticky top-0 z-999 flex w-full bg-white drop-shadow-1 dark:bg-boxdark dar
       >
         <span class="hidden text-right lg:block">
           <span class="block text-sm font-medium text-black dark:text-white"
-            >Thomas Anree</span
+            >{{ auth()->user()->name }}</span
           >
-          <span class="block text-xs font-medium">UX Designer</span>
+          <span class="block text-xs font-medium">Administrateur</span>
         </span>
 
         <span class="h-12 w-12 rounded-full">
-          <img src="src/images/user/user-01.png" alt="User" />
+          <img src="{{ asset('assets/img/backend/admin.jpeg') }}" alt="User" />
         </span>
 
         <svg
@@ -522,6 +522,7 @@ class="sticky top-0 z-999 flex w-full bg-white drop-shadow-1 dark:bg-boxdark dar
           </li>
         </ul>
         <button
+        onclick="event.preventDefault();document.getElementById('logout-form').submit()"
           class="flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
         >
           <svg
@@ -543,6 +544,11 @@ class="sticky top-0 z-999 flex w-full bg-white drop-shadow-1 dark:bg-boxdark dar
           </svg>
           Log Out
         </button>
+        <form id="logout-form" action="{{ route('logout') }}" method="post">
+            @csrf
+
+
+        </form>
       </div>
       <!-- Dropdown End -->
     </div>
