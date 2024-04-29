@@ -23,6 +23,8 @@ Route::get('/inscription',[PageController::class,'inscription'])->name('inscript
 Route::get('test',function(){
     return view('test');
 });
+
+Route::get('/candidates',[PageController::class,'candidates'])->name('candidate.list');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

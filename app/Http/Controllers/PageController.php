@@ -9,4 +9,8 @@ class PageController extends Controller
     public function inscription(){
         return view('pages.inscription');
     }
+
+    public function candidates(){
+        return view('candidate.list');
+    }
 }

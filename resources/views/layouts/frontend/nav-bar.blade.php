@@ -19,7 +19,7 @@
           <a href="{{ route('inscription') }}" class="block py-2 px-3  text-[#f1c802] rounded md:bg-transparent  md:p-0" aria-current="page">Inscription</a>
         </li>
         <li>
-          <a href="#" class="block py-2 px-3 text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#f1c802] md:p-0     md:dark:hover:bg-transparent dark:border-gray-700">Candidats</a>
+          <a href="{{ route('candidate.list') }}" class="block py-2 px-3 text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#f1c802] md:p-0     md:dark:hover:bg-transparent dark:border-gray-700">Candidats</a>
         </li>
         <li>
           <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Sponsors</a>
