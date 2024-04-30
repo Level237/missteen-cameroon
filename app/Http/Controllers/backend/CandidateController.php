@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 
 class CandidateController extends Controller
 {
+    public function create(){
+        return view('candidate.create');
+    }
     public function register(Request $request){
         $candidate=new Candidate;
         $candidate->candidate_name=$request->candidate_name;

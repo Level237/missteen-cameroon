@@ -125,7 +125,7 @@ class="absolute left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hid
         <li>
           <a
             class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
-            href="tables.html"
+            href="{{ route('candidate.create') }}"
             @click="selected = (selected === 'Tables' ? '':'Tables')"
             :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Tables') && (page === 'tables') }"
           >
@@ -155,7 +155,7 @@ class="absolute left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hid
               </defs>
             </svg>
 
-            Creer une candidate
+            Créer une candidate
           </a>
         </li>
         <!-- Menu Item Tables -->
