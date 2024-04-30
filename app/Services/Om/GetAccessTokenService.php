@@ -7,7 +7,7 @@ class getAccessService{
 
     public function getAccessToken(){
         $response=Http::withoutVerifying()->asForm()->withHeaders([
-            'Authorization' => 'Basic TFNwVENsUW1xa3pPeFNyMmRrZFNyZXFTUFE0YTp1RDg1SE9pMmk4aUdNaEhwTHpNNkc1Y1lVRHdh',
+            'Authorization' => 'Basic VEVFTkNBTUVST09OXzAxOkZ5YkEzQGI1',
             'Content-Type' => 'application/x-www-form-urlencoded'
         ])->post("https://api-s1.orange.cm/token",[
             'grant_type'=>'client_credentials'
