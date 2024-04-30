@@ -21,7 +21,6 @@ class CandidateController extends Controller
         $candidate->category_id=$request->category_id;
         $candidate->candidate_slug=$this->slugify($request->candidate_name);
         $candidate->save();
-
         return $candidate;
     }
 
