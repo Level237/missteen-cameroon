@@ -5,8 +5,8 @@ Homepage
 @endsection
 
 @section('content')
-<section class="bg-center bg-no-repeat   bg-[#1a1625] bg-blend-multiply">
-    <div class="flex items-center justify-center ml-[3rem] ">
+<section class="bg-center bg-no-repeat max-sm:mt-36   bg-[#1a1625] bg-blend-multiply">
+    <div class="flex items-center max-sm:flex-col max-sm:ml-0 justify-center ml-[3rem] ">
         <div class="px-4 flex-1 mx-auto max-w-screen-xl py-24 lg:py-56">
             <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">Devenez la miss Teen Cameroon de demain</h1>
             <p class="mb-8 text-lg font-normal text-gray-300 lg:text-xl ">Here at Flowbite we focus on markets where technology, innovation, and capital can unlock long-term value and drive economic growth.</p>
@@ -22,7 +22,7 @@ Homepage
                 </a>
             </div>
         </div>
-        <div class="w-[34rem] mt-12">
+        <div class="w-[34rem] mt-12 max-sm:hidden">
             <img src="{{ asset('assets/img/bg.png') }}" alt="">
         </div>
     </div>
