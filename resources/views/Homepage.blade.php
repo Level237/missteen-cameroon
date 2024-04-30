@@ -5,7 +5,7 @@ Homepage
 @endsection
 
 @section('content')
-<section class="bg-center bg-no-repeat max-sm:mt-36   bg-[#1a1625] bg-blend-multiply">
+<section class="bg-center bg-no-repeat    bg-[#1a1625] bg-blend-multiply">
     <div class="flex items-center max-sm:flex-col max-sm:ml-0 justify-center ml-[3rem] ">
         <div class="px-4 flex-1 mx-auto max-w-screen-xl py-24 lg:py-56">
             <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">Devenez la miss Teen Cameroon de demain</h1>
