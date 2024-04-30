@@ -4,12 +4,14 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Candidate;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CandidateController extends Controller
 {
     public function create(){
-        return view('candidate.create');
+        $categories=Category::all();
+        return view('candidate.create',compact('categories'));
     }
     public function index(){
         return view('candidate.index');
@@ -17,12 +19,11 @@ class CandidateController extends Controller
     public function store(Request $request){
         $candidate=new Candidate;
         $candidate->candidate_name=$request->candidate_name;
-        $candidate->phone_number=$request->phone_number;
         $candidate->age=$request->age;
         $candidate->description=$request->description;
         $candidate->city=$request->city;
         $candidate->size=$request->size;
-        $image_path = $request->course_profile->store('candidates', 'public');
+        $image_path = $request->profile->store('candidates', 'public');
         $candidate->profile=$image_path;
         $candidate->category_id=$request->category_id;
         $candidate->candidate_slug=$this->slugify($request->candidate_name);
