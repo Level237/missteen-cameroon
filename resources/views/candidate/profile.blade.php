@@ -44,7 +44,10 @@ Listes des candidates
         <div class="flex justify-center flex-col items-center mx-[27rem] mt-6">
             <p class="text-center">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur repellendus placeat ea sequi mollitia. Id expedita delectus possimus, fuga dolore veritatis reprehenderit culpa rerum. Quia aspernatur quas qui temporibus iusto?</p>
         </div>
-        <a href="{{ route('candidate.profile') }}" class="bg-[#0f042d]   text-center  text-white px-3 mt-5 py-4 rounded-md">Voter ce candidat</a>
+        <div class="flex justify-center">
+            <a href="{{ route('candidate.profile') }}" class="bg-[#0f042d]   text-center  text-white px-3 mt-5 py-4 rounded-md">Voter ce candidat</a>
+        </div>
+
     </section>
 </section>
 
