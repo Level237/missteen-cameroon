@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('age');
             $table->string('description')->nullable();
             $table->string('city');
-            $table->string('cover_url')->nullable();
             $table->string('size');
             $table->integer('score')->default(0);
             $table->string('profile');
