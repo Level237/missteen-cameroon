@@ -14,7 +14,7 @@ class CandidateController extends Controller
     public function index(){
         return view('candidate.index');
     }
-    public function register(Request $request){
+    public function store(Request $request){
         $candidate=new Candidate;
         $candidate->candidate_name=$request->candidate_name;
         $candidate->phone_number=$request->phone_number;

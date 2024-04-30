@@ -26,7 +26,7 @@ Route::get('test',function(){
 
 Route::get('/profile/candidate',[PageController::class,'profile'])->name('candidate.profile');
 
-Route::get('/candidates',[PageController::class,'candidates'])->name('candidate.list');
+Route::get('/list/candidates',[PageController::class,'candidates'])->name('candidate.list');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
