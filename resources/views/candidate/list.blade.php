@@ -19,16 +19,17 @@ Listes des candidates
     </section>
     <
     <section class="grid mb-36 mx-[6rem] mt-12 grid-cols-3 gap-5 max-sm:grid-cols-1">
+        @foreach ($candidates as $candidate)
         <div class="flex flex-col bg-gray-300 rounded-2xl py-12  items-center">
             <div class="flex justify-between items-center gap-4">
-                <img class="w-[7rem] h-[7rem] rounded-full" src="{{ asset('assets/img/miss.jpg') }}" alt="">
+                <img class="w-[7rem] h-[7rem] rounded-full" src="{{ Storage::url($candidate->profile) }}" alt="">
                 <div class="flex flex-col">
-                    <h2 class="text-xl font-bold">Ongolo Carine</h2>
+                    <h2 class="text-xl font-bold">{{ $candidate->candidate_name }}</h2>
                     <div>
-                        <p>Age: <span class="font-bold">23 ans</span></p>
+                        <p>Age: <span class="font-bold">{{ $candidate->age }} ans</span></p>
                     </div>
                     <div>
-                        <p>Ville: <span class="font-bold">Douala</span></p>
+                        <p>Ville: <span class="font-bold">{{ $candidate->city }}</span></p>
                     </div>
                     <a href="{{ route('candidate.profile') }}" class="bg-[#0f042d] text-center  text-white px-2 mt-2 py-1 rounded-md">Voter</a>
                 </div>
@@ -36,85 +37,7 @@ Listes des candidates
             </div>
 
         </div>
-        <div class="flex flex-col bg-gray-300 rounded-2xl py-12  items-center">
-            <div class="flex justify-between items-center gap-4">
-                <img class="w-[7rem] h-[7rem] rounded-full" src="{{ asset('assets/img/miss.jpg') }}" alt="">
-                <div class="flex flex-col">
-                    <h2 class="text-xl font-bold">Ongolo Carine</h2>
-                    <div>
-                        <p>Age: <span class="font-bold">23 ans</span></p>
-                    </div>
-                    <div>
-                        <p>Ville: <span class="font-bold">Douala</span></p>
-                    </div>
-                    <a href="{{ route('candidate.profile') }}" class="bg-[#0f042d] text-center  text-white px-2 mt-2 py-1 rounded-md">Voter</a>
-                </div>
-            </div>
+        @endforeach
 
-        </div>
-        <div class="flex flex-col bg-gray-300 rounded-2xl py-12  items-center">
-            <div class="flex justify-between items-center gap-4">
-                <img class="w-[7rem] h-[7rem] rounded-full" src="{{ asset('assets/img/miss.jpg') }}" alt="">
-                <div class="flex flex-col">
-                    <h2 class="text-xl font-bold">Ongolo Carine</h2>
-                    <div>
-                        <p>Age: <span class="font-bold">23 ans</span></p>
-                    </div>
-                    <div>
-                        <p>Ville: <span class="font-bold">Douala</span></p>
-                    </div>
-                    <button class="bg-[#0f042d]  text-white px-2 mt-2 py-1 rounded-md">Voter</button>
-                </div>
-            </div>
-
-        </div>
-        <div class="flex flex-col bg-gray-300 rounded-2xl py-12  items-center">
-            <div class="flex justify-between items-center gap-4">
-                <img class="w-[7rem] h-[7rem] rounded-full" src="{{ asset('assets/img/miss.jpg') }}" alt="">
-                <div class="flex flex-col">
-                    <h2 class="text-xl font-bold">Ongolo Carine</h2>
-                    <div>
-                        <p>Age: <span class="font-bold">23 ans</span></p>
-                    </div>
-                    <div>
-                        <p>Ville: <span class="font-bold">Douala</span></p>
-                    </div>
-                    <a href="{{ route('candidate.profile') }}" class="bg-[#0f042d] text-center  text-white px-2 mt-2 py-1 rounded-md">Voter</a>
-                </div>
-            </div>
-
-        </div>
-        <div class="flex flex-col bg-gray-300 rounded-2xl py-12  items-center">
-            <div class="flex justify-between items-center gap-4">
-                <img class="w-[7rem] h-[7rem] rounded-full" src="{{ asset('assets/img/miss.jpg') }}" alt="">
-                <div class="flex flex-col">
-                    <h2 class="text-xl font-bold">Ongolo Carine</h2>
-                    <div>
-                        <p>Age: <span class="font-bold">23 ans</span></p>
-                    </div>
-                    <div>
-                        <p>Ville: <span class="font-bold">Douala</span></p>
-                    </div>
-                    <a href="{{ route('candidate.profile') }}" class="bg-[#0f042d] text-center  text-white px-2 mt-2 py-1 rounded-md">Voter</a>
-                </div>
-            </div>
-
-        </div>
-        <div class="flex flex-col bg-gray-300 rounded-2xl py-12  items-center">
-            <div class="flex justify-between items-center gap-4">
-                <img class="w-[7rem] h-[7rem] rounded-full" src="{{ asset('assets/img/miss.jpg') }}" alt="">
-                <div class="flex flex-col">
-                    <h2 class="text-xl font-bold">Ongolo Carine</h2>
-                    <div>
-                        <p>Age: <span class="font-bold">23 ans</span></p>
-                    </div>
-                    <div>
-                        <p>Ville: <span class="font-bold">Douala</span></p>
-                    </div>
-                     <a href="{{ route('candidate.profile') }}" class="bg-[#0f042d] text-center  text-white px-2 mt-2 py-1 rounded-md">Voter</a>
-                </div>
-            </div>
-
-        </div>
     </section>
 @endsection

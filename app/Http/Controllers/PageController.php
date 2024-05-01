@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Candidate;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -11,7 +12,8 @@ class PageController extends Controller
     }
 
     public function candidates(){
-        return view('candidate.list');
+        $candidates=Candidate::all();
+        return view('candidate.list',compact('candidates'));
     }
 
     public function profile(){
