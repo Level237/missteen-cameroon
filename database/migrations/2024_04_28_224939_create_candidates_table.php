@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::disableForeignKeyConstraints();
         Schema::create('candidates', function (Blueprint $table) {
             $table->id();
-            $table->string('candidate_name');
+            $table->string('candidate_name')->unique();
             $table->string('age');
             $table->string('description')->nullable();
             $table->string('city');

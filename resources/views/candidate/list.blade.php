@@ -31,7 +31,7 @@ Listes des candidates
                     <div>
                         <p>Ville: <span class="font-bold">{{ $candidate->city }}</span></p>
                     </div>
-                    <a href="{{ route('candidate.profile') }}" class="bg-[#0f042d] text-center  text-white px-2 mt-2 py-1 rounded-md">Voter</a>
+                    <a href="{{ route('candidate.profile', $candidate->candidate_slug) }}" class="bg-[#0f042d] text-center  text-white px-2 mt-2 py-1 rounded-md">Voter</a>
                 </div>
 
             </div>

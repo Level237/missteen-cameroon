@@ -24,13 +24,14 @@ Route::get('test',function(){
     return view('test');
 });
 
-Route::get('/profile/candidate',[PageController::class,'profile'])->name('candidate.profile');
+
 
 Route::get('/list/candidates',[PageController::class,'candidates'])->name('candidate.list');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/candidate/{slug}',[PageController::class,'profile'])->name('candidate.profile');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
