@@ -234,7 +234,7 @@ Dashboard
                     <label
                       class="mb-3 block text-sm font-medium text-black dark:text-white"
                     >
-                      Attach file
+                      Profil Candidate
                     </label>
                     <input
                       type="file"
