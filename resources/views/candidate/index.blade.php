@@ -22,9 +22,7 @@
           </ol>
         </nav>
       </div>
-      <!-- Breadcrumb End -->
 
-      <!-- ====== Table Section Start -->
       <div class="flex flex-col gap-10">
         @if(Session::get('success'))
         <div
