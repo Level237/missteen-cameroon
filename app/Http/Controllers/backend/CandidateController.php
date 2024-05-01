@@ -29,7 +29,7 @@ class CandidateController extends Controller
         $candidate->category_id=$request->category_id;
         $candidate->candidate_slug=$this->slugify($request->candidate_name);
         $candidate->save();
-        return $candidate;
+        return to_route('candidates.index')->with('success',"candidate créer avec success");
     }
 
     function slugify($string, $delimiter = '-') {
