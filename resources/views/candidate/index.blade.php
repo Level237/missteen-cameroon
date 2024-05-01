@@ -44,6 +44,11 @@ class="rounded-sm border border-stroke bg-white px-5 pb-2.5 pt-6 shadow-default 
           Ville
         </th>
         <th
+        class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white"
+      >
+        Catégorie
+      </th>
+        <th
           class="min-w-[120px] px-4 py-4 font-medium text-black dark:text-white"
         >
           Score
@@ -65,8 +70,14 @@ class="rounded-sm border border-stroke bg-white px-5 pb-2.5 pt-6 shadow-default 
           <p class="text-black dark:text-white">Douala</p>
         </td>
         <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
+            <p
+              class="inline-flex rounded-full bg-success bg-opacity-10 px-3 py-1 text-sm font-medium text-success"
+            >
+             Misteen Cameroun
+            </p>
+        <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
           <p
-            class="inline-flex rounded-full bg-success bg-opacity-10 px-3 py-1 text-sm font-medium text-success"
+            class="inline-flex  bg-opacity-10 px-3 py-1 text-sm font-medium text-success"
           >
             12 pts
           </p>
