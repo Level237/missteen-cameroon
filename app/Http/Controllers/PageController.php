@@ -21,4 +21,9 @@ class PageController extends Controller
         $candidate=Candidate::where('candidate_slug',$slug)->firstOrFail();
         return view('candidate.profile',compact('candidate'));
     }
+
+    public function vote($slug){
+        $candidate=Candidate::where('candidate_slug',$slug)->firstOrFail();
+        return view('candidate.vote',compact('candidate'));
+    }
 }

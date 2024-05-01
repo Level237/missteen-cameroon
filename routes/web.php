@@ -31,6 +31,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('jeVotePour/{slug}',[PageController::class,'vote'])->name('candidate.vote');
 Route::get('/candidate/{slug}',[PageController::class,'profile'])->name('candidate.profile');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

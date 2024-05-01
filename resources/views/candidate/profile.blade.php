@@ -45,7 +45,7 @@ Candidate numero {{ $candidate->id }}
             <p class="text-center">{{ $candidate->description }}</p>
         </div>
         <div class="flex justify-center">
-            <a href="{{ route('candidate.profile',$candidate->candidate_slug) }}" class="bg-[#0f042d]   text-center  text-white px-3 mt-5 py-4 rounded-md">Voter ce candidat</a>
+            <a href="{{ route('candidate.vote',$candidate->candidate_slug) }}" class="bg-[#0f042d]   text-center  text-white px-3 mt-5 py-4 rounded-md">Voter ce candidat</a>
         </div>
 
     </section>
