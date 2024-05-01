@@ -14,7 +14,8 @@ class CandidateController extends Controller
         return view('candidate.create',compact('categories'));
     }
     public function index(){
-        return view('candidate.index');
+        $candidates=Candidate::all();
+        return view('candidate.index',compact('candidates'));
     }
     public function store(Request $request){
         $candidate=new Candidate;
