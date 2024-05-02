@@ -80,9 +80,11 @@ export default function App(){
             if(s.status=="PENDING"){
                 setText("Votre paiement est en cours veuillez validez ou tapez #150*50# ne fermez pas la page s'il vous plait!...")
             }else if(s.status=="CANCELLED"){
-                setText("Votre paiement a été annuleé!...")
+                setError("Votre paiement a été annuleé!...")
+
             }else if(s.status=='FAILED'){
-                setText("Votre paiement a été echoué!...")
+                setError("Votre paiement a été echoué!...")
+
             }
         }else{
             return;
@@ -111,9 +113,9 @@ export default function App(){
     return(
         <>
 
-{status && <p>{status}</p>}
+
 {inputError && <div style={{ color:"red" }}>{inputError}</div>}
-{error && <div className='text-white flex flex-col gap-4 items-center justify-center bg-red-500 p-6 mb-3 rounded-md' style={{ background:"#ff0037" }}>
+{error!==null && <div className='text-white flex flex-col gap-4 items-center justify-center bg-red-500 p-6 mb-3 rounded-md' style={{ background:"#ff0037" }}>
 
     <div>{error}</div>
     <div><button onClick={retryBtn}  class="text-white bg-[#0f042d]  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Réessayer</button></div>
