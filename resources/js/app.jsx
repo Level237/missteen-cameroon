@@ -81,7 +81,7 @@ export default function App(){
     </svg>
     <span class="sr-only">Loading...</span>
 </div>
-        <div className='text-center'>En cours de traitement...</div>
+        <div className='text-center'>En cours de traitement ne fermez pas la page s'il vous plait!...</div>
     </div>
 
 
