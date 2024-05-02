@@ -35,6 +35,7 @@ Route::get('/dashboard', function () {
 Route::get('jeVotePour/{slug}',[PageController::class,'vote'])->name('candidate.vote');
 Route::get('access',[VoteController::class,'payment']);
 Route::get('validation/{token}/{payToken}/{number}/{amount}',[VoteController::class,'paymentValidation']);
+Route::get('/status/{token}/{payToken}/{id}',[VoteController::class,'getPaymentStatus']);
 Route::get('/candidate/{slug}',[PageController::class,'profile'])->name('candidate.profile');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

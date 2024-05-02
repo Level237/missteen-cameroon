@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\Om\GetAccessTokenService;
 use App\Services\Om\InitPaymentService;
+use App\Services\Om\StatusPaymentService;
 use App\Services\Om\ValidationPayment;
 
 class VoteController extends Controller
@@ -19,12 +20,18 @@ class VoteController extends Controller
     public function paymentValidation($token,$payToken,$number,$amount){
         $validation=(new ValidationPayment())->paymentValidation($token,$payToken,$number,$amount);
         $response=json_decode($validation);
-
-        if($response->message=='60019 :: Le solde du compte du payeur est insuffisant'){
+        $message=$response->message ?? null;
+        if($message=='60019 :: Le solde du compte du payeur est insuffisant'){
 
             return response()->json(["message"=>'Votre Credit est insuffisant',"code"=>20]);
         }
 
         return response()->json(["message"=>'Votre paiement a bien été initialiser,veuillez confirmer votre paiement',"code"=>21]);
+    }
+
+    public function getPaymentStatus($token,$payToken,$id){
+        $validation=(new StatusPaymentService())->status($token,$payToken);
+        $response=json_decode($validation);
+        return response()->json(['status'=>$validation]);
     }
 }

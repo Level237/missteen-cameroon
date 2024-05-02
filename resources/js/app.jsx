@@ -10,6 +10,10 @@ export default function App(){
     const [error,setError]=useState(null)
     const [tokenAccess,setTokenAccess]=useState(null)
     const [payToken,setPayToken]=useState(null)
+    const idCandidate=document.querySelector(".candidateId").innerHTML
+    const [candidateId]=useState(idCandidate)
+    const [status,setStatus]=useState("")
+    const [text,setText]=useState("")
 
     const retryBtn=()=>{
         setVisibleCard(true)
@@ -31,7 +35,8 @@ export default function App(){
         try{
 
 
-            const token=await fetch(`${href}/access`)
+            setTimeout(async()=>{
+                const token=await fetch(`${href}/access`)
 
           if(token.status===500){
             setVisibleCard(false)
@@ -43,16 +48,19 @@ export default function App(){
             setPayToken(data.payToken)
 
 
-                const validation=await fetch(`${href}/validation/${data.token}/${data.payToken}/${number}/10`)
+                const validation=await fetch(`${href}/validation/${data.token}/${data.payToken}/${number}/1`)
                 const response=await validation.json()
                 if(response.code===20){
                     setError(t.message)
                     setVisibleCard(false)
                 }
                 else if(response.code===21){
+                    setError(null)
                     setVisibleCard(false)
-
+                    setText("En cours de traitement ne fermez pas la page s'il vous plait!...")
                 }
+                console.log(response);
+            },[1000])
 
         }catch (error) {
 
@@ -61,19 +69,56 @@ export default function App(){
     }
 
     useEffect(()=>{
+        handleSubmit()
+    },[tokenAccess,payToken])
+
+    const getStatus=async()=>{
+        const status=await fetch(`${href}/status/${tokenAccess}/${payToken}/${candidateId}`)
+        const s=await status.json()
+        if(s.status && !s.status.headers ){
+            setStatus(s.status)
+            if(s.status=="PENDING"){
+                setText("Votre paiement est en cours veuillez validez ou tapez #150*50# ne fermez pas la page s'il vous plait!...")
+            }else if(s.status=="CANCELLED"){
+                setText("Votre paiement a été annuleé!...")
+            }else if(s.status=='FAILED'){
+                setText("Votre paiement a été echoué!...")
+            }
+        }else{
+            return;
+        }
+
+    }
+    useEffect(()=>{
         console.log("token");
         console.log(tokenAccess);
         console.log(payToken);
+
+
+        getStatus()
     },[!visibleCard])
+
+    useEffect(()=>{
+
+        const hans=()=>{
+            getStatus()
+
+        }
+       hans()
+
+        //setStatus(status.status)
+    })
     return(
         <>
+
+{status && <p>{status}</p>}
 {inputError && <div style={{ color:"red" }}>{inputError}</div>}
 {error && <div className='text-white flex flex-col gap-4 items-center justify-center bg-red-500 p-6 mb-3 rounded-md' style={{ background:"#ff0037" }}>
 
     <div>{error}</div>
     <div><button onClick={retryBtn}  class="text-white bg-[#0f042d]  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Réessayer</button></div>
     </div>}
-        {visibleCard && <div class="flex flex-col bg-gray-400 px-12  pb-[3rem] pt-[3rem] rounded-lg justify-center items-center">
+        {visibleCard && <div class="flex flex-col bg-gray-400 px-12  pb-[3rem] pt-[3rem] rounded-lg justify-center items-center" style={{ background:"gray",padding:"3rem" }}>
 
         <form onSubmit={handleSubmit} class="">
             <div class="mb-5">
@@ -81,7 +126,7 @@ export default function App(){
               <input onChange={numberChanger} value={number} type="text" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  w-full p-4" placeholder="Entrez votre numéro de téléphone" />
             </div>
 
-            <button type='submit'  class="text-white bg-[#0f042d]  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Envoyer</button>
+            <button type='submit'  class="text-white bg-[#0f042d]  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center" style={{ paddingLeft:"1.25rem",paddingRight:"1.25rem",paddingTop:"0.625rem",paddingBottom:"0.625rem"  }}>Envoyer</button>
           </form>
 
     </div>}
@@ -95,7 +140,7 @@ export default function App(){
     </svg>
     <span class="sr-only">Loading...</span>
 </div>
-        <div className='text-center'>En cours de traitement ne fermez pas la page s'il vous plait!...</div>
+        <div className='text-center'>{text}</div>
     </div>
 
 

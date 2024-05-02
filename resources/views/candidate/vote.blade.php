@@ -8,6 +8,7 @@ Je Vote pour {{ $candidate->candidate_name }}
 <section class="mt-[15rem] flex  flex-col items-center">
 
 
+    <div class="candidateId" style="visibility: hidden">{{ $candidate->id }}</div>
 
     <div id="root"></div>
 
