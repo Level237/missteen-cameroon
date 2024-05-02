@@ -5,6 +5,8 @@ import React, { useState } from 'react';
 export default function App(){
     const href = window.location.origin;
     const [visibleCard,setVisibleCard]=useState(true)
+    const [inputError,setInputError]=useState("")
+    const [number,setNumber]=useState(null)
     const [error,setError]=useState(null)
     const [tokenAccess,setTokenAccess]=useState(null)
     const [payToken,setPayToken]=useState(null)
@@ -13,11 +15,24 @@ export default function App(){
         setVisibleCard(true)
         setError(null)
     }
-    const handleSubmit=async()=>{
 
+    const numberChanger=(event)=>{
+        setNumber(event.target.value)
+    }
+    const handleSubmit=async(event)=>{
+
+        event.preventDefault();
+        if(number==null){
+            setInputError("votre numéro de téléphone ne peut pas etre vide")
+            console.log(inputError);
+            console.log("le");
+            return;
+        }
         try{
+
+
             const token=await fetch(`${href}/access`)
-            console.log(token);
+
           if(token.status===500){
             setVisibleCard(false)
              setError(`une erreur à été  produite,verifié  votre connexion internet et réessayer!`)
@@ -37,8 +52,9 @@ export default function App(){
     }
     return(
         <>
-
+{inputError && <div style={{ color:"red" }}>{inputError}</div>}
 {error && <div className='text-white flex flex-col gap-4 items-center justify-center bg-red-500 p-6 mb-3 rounded-md' style={{ background:"#ff0037" }}>
+
     <div>{error}</div>
     <div><button onClick={retryBtn}  class="text-white bg-[#0f042d]  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Réessayer</button></div>
     </div>}
@@ -47,12 +63,12 @@ export default function App(){
         <form onSubmit={handleSubmit} class="">
             <div class="mb-5">
               <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Numéro de téléphone</label>
-              <input type="text" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  w-full p-4" placeholder="Entrez votre numéro de téléphone" required />
+              <input onChange={numberChanger} value={number} type="text" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  w-full p-4" placeholder="Entrez votre numéro de téléphone" />
             </div>
 
-
+            <button type='submit'  class="text-white bg-[#0f042d]  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Envoyer</button>
           </form>
-          <button onClick={handleSubmit}  class="text-white bg-[#0f042d]  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Envoyer</button>
+
     </div>}
 {!visibleCard && error ==null &&
 <div role="status">
