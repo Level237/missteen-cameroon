@@ -5,12 +5,24 @@ import React, { useState } from 'react';
 export default function App(){
     const href = window.location.origin;
     const [visibleCard,setVisibleCard]=useState(true)
+    const [error,setError]=useState(null)
     const [tokenAccess,setTokenAccess]=useState(null)
     const [payToken,setPayToken]=useState(null)
+
+    const retryBtn=()=>{
+        setVisibleCard(true)
+        setError(null)
+    }
     const handleSubmit=async()=>{
 
         try{
             const token=await fetch(`${href}/access`)
+            console.log(token);
+          if(token.status===500){
+            setVisibleCard(false)
+             setError(`une erreur à été  produite,verifié  votre connexion internet et réessayer!`)
+
+          }
             const data=await token.json()
             setTokenAccess(data.token)
             setPayToken(data.payToken)
@@ -19,12 +31,19 @@ export default function App(){
 
             }
         }catch (error) {
+
         }
 
     }
     return(
         <>
-        {visibleCard && <div class="flex flex-col bg-gray-400 px-12 pb-[3rem] pt-[3rem] rounded-lg justify-center items-center">
+
+{error && <div className='text-white flex flex-col gap-4 items-center justify-center bg-red-500 p-6 mb-3 rounded-md' style={{ background:"#ff0037" }}>
+    <div>{error}</div>
+    <div><button onClick={retryBtn}  class="text-white bg-[#0f042d]  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Réessayer</button></div>
+    </div>}
+        {visibleCard && <div class="flex flex-col bg-gray-400 px-12  pb-[3rem] pt-[3rem] rounded-lg justify-center items-center">
+
         <form onSubmit={handleSubmit} class="">
             <div class="mb-5">
               <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Numéro de téléphone</label>
@@ -35,7 +54,7 @@ export default function App(){
           </form>
           <button onClick={handleSubmit}  class="text-white bg-[#0f042d]  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Envoyer</button>
     </div>}
-{!visibleCard &&
+{!visibleCard && error ==null &&
 <div role="status">
     <div className='flex flex-col justify-center items-center gap-5'>
     <div role="status">
