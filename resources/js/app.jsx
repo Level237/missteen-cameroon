@@ -43,11 +43,15 @@ export default function App(){
             setPayToken(data.payToken)
 
 
-                const validation=await fetch(`${href}/validation/${data.token}/${data.payToken}/${number}/10000`)
-                const t=await validation.json()
-                if(t.code===20){
+                const validation=await fetch(`${href}/validation/${data.token}/${data.payToken}/${number}/10`)
+                const response=await validation.json()
+                if(response.code===20){
                     setError(t.message)
                     setVisibleCard(false)
+                }
+                else if(response.code===21){
+                    setVisibleCard(false)
+                    console.log(response);
                 }
 
         }catch (error) {
@@ -57,8 +61,6 @@ export default function App(){
     }
     return(
         <>
-          {payToken && <div style={{ color:"green" }}>{payToken}</div>}
-        {tokenAccess && <div style={{ color:"green" }}>{tokenAccess}</div>}
 {inputError && <div style={{ color:"red" }}>{inputError}</div>}
 {error && <div className='text-white flex flex-col gap-4 items-center justify-center bg-red-500 p-6 mb-3 rounded-md' style={{ background:"#ff0037" }}>
 

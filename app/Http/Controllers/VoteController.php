@@ -25,6 +25,6 @@ class VoteController extends Controller
             return response()->json(["message"=>'Votre Credit est insuffisant',"code"=>20]);
         }
 
-        return $response;
+        return response()->json(["message"=>'Votre paiement a bien été initialiser,veuillez confirmer votre paiement',"code"=>21]);
     }
 }
