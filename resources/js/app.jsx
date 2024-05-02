@@ -36,11 +36,12 @@ export default function App(){
           if(token.status===500){
             setVisibleCard(false)
              setError(`une erreur à été  produite,verifié  votre connexion internet et réessayer!`)
-
+            setInputError('')
           }
             const data=await token.json()
             setTokenAccess(data.token)
             setPayToken(data.payToken)
+            setInputError('')
             setVisibleCard(false)
             if(payToken){
 
