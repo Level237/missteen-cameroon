@@ -6,6 +6,7 @@ import { of } from 'rxjs';
 
 export default function App(){
     const href = window.location.origin;
+    const link=window.location.href
 
     const [visibleCard,setVisibleCard]=useState(true)
     const [inputError,setInputError]=useState("")
@@ -17,7 +18,9 @@ export default function App(){
     const [candidateId]=useState(idCandidate)
     const [status,setStatus]=useState("")
     const [text,setText]=useState("")
-    const [isMounted,setIsMounted]=useState(false)
+    const [viewError,setViewError]=useState("")
+    const [isViewError,setIsViewError]=useState(false)
+
 
     const fetchData=(url)=>{
         return fromFetch(url).pipe(
@@ -131,7 +134,10 @@ export default function App(){
             if(s.status=="PENDING"){
                 setText("Votre paiement est en cours veuillez validez ou tapez #150*50# ne fermez pas la page s'il vous plait!...")
             }else if(s.status=="CANCELLED"){
-                setError("Votre paiement a été annuleé!...")
+
+                    setError("Votre paiement a été annuleé!...")
+
+
 
             }else if(s.status=='FAILED'){
                 setError("Votre paiement a été echoué!...")
@@ -146,7 +152,13 @@ export default function App(){
     useEffect(()=>{
 
 
-                setInterval(()=>{getStatus()},500)
+                setInterval(()=>{
+
+                        getStatus();
+
+
+
+                },500)
                 console.log("test");
 
 
@@ -167,7 +179,7 @@ export default function App(){
 {error!==null && <div className='text-white flex flex-col gap-4 items-center justify-center bg-red-500 p-6 mb-3 rounded-md' style={{ background:"#ff0037" }}>
 
     <div>{error}</div>
-    <div><button onClick={retryBtn}  class="text-white bg-[#0f042d]  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Réessayer</button></div>
+    <div><a href={link} style={{ paddingLeft:"1.25rem",paddingRight:"1.25rem",paddingTop:"0.625rem",paddingBottom:"0.625rem"  }} class="text-white bg-[#0f042d]  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Réessayer</a></div>
     </div>}
         {visibleCard && <div class="flex flex-col bg-gray-400 px-12  pb-[3rem] pt-[3rem] rounded-lg justify-center items-center" style={{ background:"gray",padding:"3rem" }}>
 
