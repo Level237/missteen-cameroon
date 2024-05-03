@@ -6,7 +6,7 @@ import { of } from 'rxjs';
 
 export default function App(){
     const href = window.location.origin;
-    const [count,setCount]=useState(0)
+
     const [visibleCard,setVisibleCard]=useState(true)
     const [inputError,setInputError]=useState("")
     const [number,setNumber]=useState(null)
@@ -92,7 +92,7 @@ export default function App(){
                             setVisibleCard(false)
                             console.log(result);
                             setText("En cours de traitement ne fermez pas la page s'il vous plait!...")
-
+                            setIsMounted(true)
                         }
 
 
@@ -146,9 +146,11 @@ export default function App(){
     useEffect(()=>{
 
 
+                setInterval(()=>{getStatus()},500)
+                console.log("test");
 
-            setInterval(()=>{getStatus()},500)
-            console.log("test");
+
+
 
 
         //setStatus(status.status)
