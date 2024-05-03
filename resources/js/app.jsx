@@ -1,20 +1,57 @@
 import { createRoot } from 'react-dom/client'
 import React, { useEffect, useState } from 'react';
-
+import { fromFetch } from 'rxjs/fetch';
+import { switchMap, catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 export default function App(){
     const href = window.location.origin;
+    const [count,setCount]=useState(0)
     const [visibleCard,setVisibleCard]=useState(true)
     const [inputError,setInputError]=useState("")
     const [number,setNumber]=useState(null)
     const [error,setError]=useState(null)
-    const [tokenAccess,setTokenAccess]=useState(null)
-    const [payToken,setPayToken]=useState(null)
+    const [tokenAccess,setTokenAccess]=useState("")
+    const [payToken,setPayToken]=useState("")
     const idCandidate=document.querySelector(".candidateId").innerHTML
     const [candidateId]=useState(idCandidate)
     const [status,setStatus]=useState("")
     const [text,setText]=useState("")
+    const [isMounted,setIsMounted]=useState(false)
 
+    const fetchData=(url)=>{
+        return fromFetch(url).pipe(
+            switchMap(response=>{
+                if(response.ok){
+                    return response.json();
+                }else{
+
+                }
+            }),
+            catchError(err => {
+                // Gestion des erreurs de réseau ou autres erreurs capturées
+                console.error(err);
+                setError(`une erreur à été  produite,verifié  votre connexion internet et réessayer!`)
+              })
+        )
+    }
+
+    const fetchValidation=()=>{
+        return fromFetch(url).pipe(
+            switchMap(response=>{
+                if(response.ok){
+                    return response.json();
+                }else{
+
+                }
+            }),
+            catchError(err => {
+                // Gestion des erreurs de réseau ou autres erreurs capturées
+                console.error(err);
+
+              })
+        )
+    }
     const retryBtn=()=>{
         setVisibleCard(true)
         setError(null)
@@ -23,54 +60,68 @@ export default function App(){
     const numberChanger=(event)=>{
         setNumber(event.target.value)
     }
-    const handleSubmit=async(event)=>{
-
+    const handleSubmit=(event)=>{
         event.preventDefault();
+
+
         if(number==null){
             setInputError("votre numéro de téléphone ne peut pas etre vide")
             console.log(inputError);
             console.log("le");
             return;
         }
-        try{
 
 
-            setTimeout(async()=>{
-                const token=await fetch(`${href}/access`)
+        const subscription = fetchData(`${href}/access`).subscribe({
+            next: result => {
+                console.log(result.token);
 
-          if(token.status===500){
-            setVisibleCard(false)
-             setError(`une erreur à été  produite,verifié  votre connexion internet et réessayer!`)
-            setInputError('')
-          }
-            const data=await token.json()
-            setTokenAccess(data.token)
-            setPayToken(data.payToken)
+                setTokenAccess(result.token)
+                setPayToken(result.payToken)
+                setError(null)
+                            setVisibleCard(false)
+                            setText("En cours de traitement ne fermez pas la page s'il vous plait!...")
+                const subscription2=fetchData(`${href}/validation/${result.token}/${result.payToken}/${number}/1`).subscribe({
+                    next: result => {
+                        if(result.code===20){
+                            setError(t.message)
+                            setVisibleCard(false)
+                        }
+                        else if(result.code===21){
+                            setError(null)
+                            setVisibleCard(false)
+                            console.log(result);
+                            setText("En cours de traitement ne fermez pas la page s'il vous plait!...")
+
+                        }
 
 
-                const validation=await fetch(`${href}/validation/${data.token}/${data.payToken}/${number}/1`)
-                const response=await validation.json()
-                if(response.code===20){
-                    setError(t.message)
-                    setVisibleCard(false)
-                }
-                else if(response.code===21){
-                    setError(null)
-                    setVisibleCard(false)
-                    setText("En cours de traitement ne fermez pas la page s'il vous plait!...")
-                }
-                console.log(response);
-            },[1000])
 
-        }catch (error) {
+                    },
+                    error: err => {
+                        console.error(err);
+                        setError(`une erreur à été  produite,verifié  votre connexion internet et réessayer!`)
+                       setInputError('')
+                    },
+                    complete: () => console.log('Fetch terminé')
+                })
+            },
+            error: err => {
+                setVisibleCard(false)
+                    setError(`une erreur à été  produite,verifié  votre connexion internet et réessayer!`)
+                   setInputError('')
+            },
+            complete: () => console.log('Fetch terminé')
 
-        }
+
+          });
+
+
+
+
+
 
     }
-
-    useEffect(()=>{
-        handleSubmit()
-    },[tokenAccess,payToken])
 
     const getStatus=async()=>{
         const status=await fetch(`${href}/status/${tokenAccess}/${payToken}/${candidateId}`)
@@ -91,25 +142,21 @@ export default function App(){
         }
 
     }
-    useEffect(()=>{
-        console.log("token");
-        console.log(tokenAccess);
-        console.log(payToken);
-
-
-        getStatus()
-    },[!visibleCard])
 
     useEffect(()=>{
 
-        const hans=()=>{
-            getStatus()
 
-        }
-       hans()
+
+            setInterval(()=>{getStatus()},500)
+            console.log("test");
+
 
         //setStatus(status.status)
     })
+
+
+
+
     return(
         <>
 
@@ -152,6 +199,11 @@ export default function App(){
 
     );
 }
+
+
+
+
+
 
 if(document.getElementById('root')){
     createRoot(document.getElementById('root')).render(<App />)
