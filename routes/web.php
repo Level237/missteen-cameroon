@@ -28,6 +28,7 @@ Route::get('test',function(){
 
 
 Route::get('/list/candidates',[PageController::class,'candidates'])->name('candidate.list');
+Route::get('/payment/successfull',[VoteController::class,'success']);
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

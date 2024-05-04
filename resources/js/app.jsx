@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client'
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { fromFetch } from 'rxjs/fetch';
 import { switchMap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
@@ -9,6 +9,7 @@ export default function App(){
     const link=window.location.href
 
     const [visibleCard,setVisibleCard]=useState(true)
+    const [valided,setValided]=useState(false)
     const [visibleBtn,setVisibleBtn]=useState(true)
     const [inputError,setInputError]=useState("")
     const [number,setNumber]=useState(null)
@@ -21,7 +22,7 @@ export default function App(){
     const [text,setText]=useState("")
     const [viewError,setViewError]=useState("")
     const [isViewError,setIsViewError]=useState(false)
-
+    const isMounted = useRef(true);
 
     const fetchData=(url)=>{
         return fromFetch(url).pipe(
@@ -96,7 +97,7 @@ export default function App(){
                             setVisibleCard(false)
                             console.log(result);
                             setText("En cours de traitement ne fermez pas la page s'il vous plait!...")
-                            setIsMounted(true)
+
                         }
 
 
@@ -132,18 +133,24 @@ export default function App(){
             next: result => {
                 if(result.status && !result.status.headers ){
                     setStatus(result.status)
-                    if(result.status=="PENDING"){
-                        setText("Votre paiement est en cours veuillez validez ou tapez #150*50# ne fermez pas la page s'il vous plait!...")
-                    }else if(result.status=="CANCELLED"){
+                    if(isMounted.current===true){
+                        if(result.status=="PENDING"){
+                            setText("Votre paiement est en cours veuillez validez ou tapez #150*50# ne fermez pas la page s'il vous plait!...")
+                        }else if(result.status=="CANCELLED"){
 
-                            setError("Votre paiement a été annuleé!...")
+                                setError("Votre paiement a été annuleé!...")
+                                setInputError('')
+
+
+                        }else if(result.status=='FAILED'){
+                            setError("Votre paiement a été echoué!...")
                             setInputError('')
-
-
-                    }else if(result.status=='FAILED'){
-                        setError("Votre paiement a été echoué!...")
-                        setInputError('')
+                        }else if(result.status=="SUCCESSFULL"){
+                            isMounted.current=false
+                            window.location.href = `${href}/payment/successfull`;
+                        }
                     }
+
                 }
 
 
@@ -161,14 +168,13 @@ export default function App(){
     useEffect(()=>{
 
 
-                setInterval(()=>{
+            setInterval(()=>{
+                getStatus();
 
-                        getStatus();
+        },500)
 
 
 
-                },500)
-                console.log("test");
 
 
 
@@ -185,6 +191,7 @@ export default function App(){
 
 
 {inputError && <div style={{ color:"red" }}>{inputError}</div>}
+
 {error!==null && <div className='text-white flex flex-col gap-4 items-center justify-center bg-red-500 p-6 mb-3 rounded-md' style={{ background:"#ff0037" }}>
 
     <div>{error}</div>
@@ -217,7 +224,7 @@ export default function App(){
           </form>
 
     </div>}
-{!visibleCard && error ==null &&
+{!visibleCard && error ==null && !valided &&
 <div role="status">
     <div className='flex flex-col justify-center items-center gap-5'>
     <div role="status">
