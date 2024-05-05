@@ -10,6 +10,7 @@ use App\Services\Om\GetAccessTokenService;
 use App\Services\Om\InitPaymentService;
 use App\Services\Om\StatusPaymentService;
 use App\Services\Om\ValidationPayment;
+use Illuminate\Support\Facades\Http;
 
 class VoteController extends Controller
 {
@@ -36,28 +37,42 @@ class VoteController extends Controller
         $validation=(new StatusPaymentService())->status($token,$payToken);
         //$response=json_decode($validation);
 
+
+            return response()->json(['status'=>$validation]);
+
+
+    }
+
+    public function success(Request $request){
+        $response=Http::withToken($request->token)->withoutVerifying()->withHeaders([
+            'X-AUTH-TOKEN' => 'WU5PVEVIRUFEOllOT1RFSEVBRDIwMjA='
+        ])->get('https://api-s1.orange.cm/omcoreapis/1.0.2/mp/paymentstatus/'.$request->payToken);
+
+        $status=json_decode($response->getBody());
+         if(isset($status->data->status)){
+            $validation= $status->data->status;
+         }
+        //$response=json_decode($validation);
+
+
         if($validation==='SUCCESSFULL'){
             $vote=new Vote;
             $vote->isPaid=true;
-            $vote->candidate_id=$id;
+            $vote->candidate_id=$request->candidateId;
 
             if($vote->save()){
-                $candidate=Candidate::find($id);
+                $candidate=Candidate::find($request->candidateId);
                 $candidate->score=$candidate->score+5;
+                $candidate->save();
                 $payment=new Payment;
                 $payment->vote_id=$vote->id;
-                $payment->amount="1";
-                $payment->payment_type="orange money";
+                $payment->amount="100";
+                $payment->payment_type=$request->type;
                 $payment->save();
-                return response()->json(['status'=>$validation]);
+                return view('payment.success');
             }
-        }else{
-            return response()->json(['status'=>$validation]);
-        }
 
-    }
-
-    public function success(){
-        return view('payment.success');
-    }
+    }else{
+        return "Unable to process payment";
+    }}
 }

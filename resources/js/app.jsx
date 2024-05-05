@@ -114,7 +114,7 @@ export default function App(){
             },
             error: err => {
                 setVisibleCard(false)
-                    setError(`une erreur à été  produite,verifié  votre connexion internet et réessayer!`)
+                    setError(`une erreur à été  produite,verifié que  votre connexion internet est stable et réessayer!`)
                    setInputError('')
             },
             complete: () => console.log('Fetch terminé')
@@ -128,6 +128,7 @@ export default function App(){
 
 
     }
+
 
 
 
@@ -150,7 +151,7 @@ export default function App(){
                                 setInputError('')
                             }else if(result.status=="SUCCESSFULL"){
                                 isMounted.current=false
-                                window.location.href = `${href}/payment/successfull`;
+                                window.location.href = `${href}/payment/successfull?token=${tokenAccess}&payToken=${payToken}&candidateId=${candidateId}&type=Om`;
                             }
                         }
 
@@ -169,6 +170,8 @@ export default function App(){
             complete: () => console.log('Fetch terminé')
         })
     }
+
+
 
     useEffect(()=>{
 
