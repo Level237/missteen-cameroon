@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Candidate;
 use App\Models\Payment;
 use App\Models\Vote;
 use Illuminate\Http\Request;
@@ -39,7 +40,10 @@ class VoteController extends Controller
             $vote=new Vote;
             $vote->isPaid=true;
             $vote->candidate_id=$id;
+
             if($vote->save()){
+                $candidate=Candidate::find($id);
+                $candidate->score=$candidate->score+5;
                 $payment=new Payment;
                 $payment->vote_id=$vote->id;
                 $payment->amount="1";

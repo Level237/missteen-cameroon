@@ -8,7 +8,7 @@ class StatusPaymentService{
 
     public function status($token,$payToken){
 
-        $response=Http::retry(3,400,throw: false)->withToken($token)->withoutVerifying()->withHeaders([
+        $response=Http::withToken($token)->withoutVerifying()->withHeaders([
             'X-AUTH-TOKEN' => 'WU5PVEVIRUFEOllOT1RFSEVBRDIwMjA='
         ])->get('https://api-s1.orange.cm/omcoreapis/1.0.2/mp/paymentstatus/'.$payToken);
 
@@ -21,4 +21,5 @@ class StatusPaymentService{
 
 
     }
+
 }

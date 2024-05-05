@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\PageController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\VoteController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\VoteController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\backend\CandidateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,15 +24,16 @@ Route::get('/', function () {
 Route::get('/inscription',[PageController::class,'inscription'])->name('inscription');
 Route::get('test',function(){
     return view('test');
-});
+})->name('test');
 
 
-
+Route::get('/candidate/create',[CandidateController::class,'create'])->name('candidate.create')->middleware('auth');
 Route::get('/list/candidates',[PageController::class,'candidates'])->name('candidate.list');
 Route::get('/payment/successfull',[VoteController::class,'success']);
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::get('jeVotePour/{slug}',[PageController::class,'vote'])->name('candidate.vote');
 Route::get('access',[VoteController::class,'payment']);

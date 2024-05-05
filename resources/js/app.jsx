@@ -18,7 +18,7 @@ export default function App(){
     const [payToken,setPayToken]=useState("")
     const idCandidate=document.querySelector(".candidateId").innerHTML
     const [candidateId]=useState(idCandidate)
-    const [status,setStatus]=useState("")
+    const [status,setStatus]=useState("SUCCESSFULL")
     const [text,setText]=useState("")
     const [viewError,setViewError]=useState("")
     const [isViewError,setIsViewError]=useState(false)
@@ -84,6 +84,7 @@ export default function App(){
                 setTokenAccess(result.token)
                 setPayToken(result.payToken)
                 setError(null)
+
                             setVisibleCard(false)
                             setText("En cours de traitement ne fermez pas la page s'il vous plait!...")
                 const subscription2=fetchData(`${href}/validation/${result.token}/${result.payToken}/${number}/1`).subscribe({
@@ -128,28 +129,32 @@ export default function App(){
 
     }
 
-    const getStatus=async()=>{
+
+
+    const getStatus=()=>{
         const subscription3=fetchData(`${href}/status/${tokenAccess}/${payToken}/${candidateId}`).subscribe({
             next: result => {
                 if(result.status && !result.status.headers ){
                     setStatus(result.status)
-                    if(isMounted.current===true){
-                        if(result.status=="PENDING"){
-                            setText("Votre paiement est en cours veuillez validez ou tapez #150*50# ne fermez pas la page s'il vous plait!...")
-                        }else if(result.status=="CANCELLED"){
+                        if(isMounted.current===true){
+                            if(result.status=="PENDING"){
+                                setText("Votre paiement est en cours veuillez validez ou tapez #150*50# ne fermez pas la page s'il vous plait!...")
+                            }else if(result.status=="CANCELLED"){
 
-                                setError("Votre paiement a été annuleé!...")
+                                    setError("Votre paiement a été annuleé!...")
+                                    setInputError('')
+
+
+                            }else if(result.status=='FAILED'){
+                                setError("Votre paiement a été echoué!...")
                                 setInputError('')
-
-
-                        }else if(result.status=='FAILED'){
-                            setError("Votre paiement a été echoué!...")
-                            setInputError('')
-                        }else if(result.status=="SUCCESSFULL"){
-                            isMounted.current=false
-                            window.location.href = `${href}/payment/successfull`;
+                            }else if(result.status=="SUCCESSFULL"){
+                                isMounted.current=false
+                                window.location.href = `${href}/payment/successfull`;
+                            }
                         }
-                    }
+
+
 
                 }
 
@@ -158,7 +163,7 @@ export default function App(){
             },
             error: err => {
                 console.error(err);
-
+                console.log("level");
 
             },
             complete: () => console.log('Fetch terminé')
@@ -168,10 +173,14 @@ export default function App(){
     useEffect(()=>{
 
 
-            setInterval(()=>{
-                getStatus();
-
+               const id= setInterval(()=>{
+                    getStatus();
+                    console.log("l");
         },500)
+        if(isMounted.current===false){
+            clearInterval(id)
+        }
+
 
 
 
