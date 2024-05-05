@@ -21,7 +21,8 @@ export default function App(){
     const [status,setStatus]=useState("SUCCESSFULL")
     const [text,setText]=useState("")
     const [viewError,setViewError]=useState("")
-    const [price,setPrice]=useState(100)
+    const [price,setPrice]=useState("100")
+    const [vote,setVote]=useState(1)
     const isMounted = useRef(true);
 
     const fetchData=(url)=>{
@@ -143,7 +144,7 @@ export default function App(){
             next: result => {
                 if(result.status && !result.status.headers ){
                     setStatus(result.status)
-                        if(isMounted.current===true){
+
                             if(result.status=="PENDING"){
                                 setText("Votre paiement est en cours veuillez validez ou tapez #150*50# ne fermez pas la page s'il vous plait!...")
                             }else if(result.status=="CANCELLED"){
@@ -157,9 +158,9 @@ export default function App(){
                                 setInputError('')
                             }else if(result.status=="SUCCESSFULL"){
                                 isMounted.current=false
-                                window.location.href = `${href}/payment/successfull?price=${price}&token=${tokenAccess}&payToken=${payToken}&candidateId=${candidateId}&type=Om`;
+                                window.location.href = `${href}/payment/successfull?price=${price}&vote=${vote}&token=${tokenAccess}&payToken=${payToken}&candidateId=${candidateId}&type=Om`;
                             }
-                        }
+
 
 
 
@@ -185,10 +186,8 @@ export default function App(){
                const id= setInterval(()=>{
                     getStatus();
                     console.log("l");
-        },500)
-        if(isMounted.current===false){
-            clearInterval(id)
-        }
+        },50)
+
 
 
 
@@ -207,7 +206,7 @@ export default function App(){
     return(
         <>
 <h2 className='text-center font-bold text-2xl mb-2'>Orange Money</h2>
-{price && <h2 className='text-center font-bold text-sm mb-2'>Vous etes sur le point de faire un achat de {price} Fcfa</h2>}
+{price && <h2 className='text-center font-bold text-sm mb-2'>Vous etes sur le point de faire un achat de {vote} vote(s) {price} Fcfa</h2>}
 {inputError && <div style={{ color:"red" }}>{inputError}</div>}
 
 {error!==null && <div className='text-white flex flex-col gap-4 items-center justify-center bg-red-500 p-6 mb-3 rounded-md' style={{ background:"#ff0037" }}>
@@ -224,7 +223,24 @@ export default function App(){
             </div>
             <div className='mb-5'>
             <label for="countries" class="block mb-2 text-sm font-medium text-gray-900">Nombre de vote</label>
-  <select onChange={(e)=>setPrice(e.target.value)} id="countries" name="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  ">
+  <select onChange={(e)=>{
+    if(e.target.value==="100"){
+        setPrice(e.target.value)
+        setVote(1)
+    }
+    if(e.target.value==="5000"){
+        setPrice(e.target.value)
+        setVote(60)
+    }
+    if(e.target.value==="10000"){
+        setPrice(e.target.value)
+        setVote(150)
+    }
+    if(e.target.value==="100000"){
+        setPrice(e.target.value)
+        setVote(2000)
+    }
+  }} id="countries" name="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  ">
 
     <option value="100">01 vote (100 Fcfa)</option>
     <option value="5000">60 votes (5000 Fcfa)</option>

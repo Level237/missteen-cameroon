@@ -10,7 +10,9 @@ use App\Services\Om\GetAccessTokenService;
 use App\Services\Om\InitPaymentService;
 use App\Services\Om\StatusPaymentService;
 use App\Services\Om\ValidationPayment;
+
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Session;
 
 class VoteController extends Controller
 {
@@ -54,21 +56,26 @@ class VoteController extends Controller
          }
         //$response=json_decode($validation);
 
+            $payToken=Session::get('payToken') ?? null;
+            //Session::forget('payToken');
 
-        if($validation==='SUCCESSFULL'){
+
+
+        if($validation==='SUCCESSFULL' && $payToken!==$request->payToken){
             $vote=new Vote;
             $vote->isPaid=true;
             $vote->candidate_id=$request->candidateId;
 
             if($vote->save()){
                 $candidate=Candidate::find($request->candidateId);
-                $candidate->score=$candidate->score+5;
+                $candidate->score=$candidate->score+$request->vote;
                 $candidate->save();
                 $payment=new Payment;
                 $payment->vote_id=$vote->id;
                 $payment->amount=$request->price;
                 $payment->payment_type=$request->type;
                 $payment->save();
+                $payToken=Session::put('payToken',$request->payToken);
                 return view('payment.success');
             }
 
