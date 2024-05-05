@@ -91,7 +91,7 @@ Candidate numero {{ $candidate->id }}
        <section class="h-10 relative bg-[#0f042d] ">
         <div class="absolute bottom-[-4rem] right-[45%] ">
             <div class="">
-                <img class="w-[10rem]   h-[10rem] rounded-full" src="{{ asset('assets/img/miss.jpg') }}" alt="{{ $candidate->candidate_name }}">
+                <img class="w-[10rem]   h-[10rem] rounded-full" src="{{ Storage::url($candidate->profile) }}" alt="{{ $candidate->candidate_name }}">
             </div>
         </div>
         </section>

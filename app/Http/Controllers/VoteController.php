@@ -65,7 +65,7 @@ class VoteController extends Controller
             $vote=new Vote;
             $vote->isPaid=true;
             $vote->candidate_id=$request->candidateId;
-
+            $slug=$request->slug;
             if($vote->save()){
                 $candidate=Candidate::find($request->candidateId);
                 $candidate->score=$candidate->score+$request->vote;
@@ -76,7 +76,7 @@ class VoteController extends Controller
                 $payment->payment_type=$request->type;
                 $payment->save();
                 $payToken=Session::put('payToken',$request->payToken);
-                return view('payment.success');
+                return view('payment.success',compact('slug'));
             }
 
     }else{

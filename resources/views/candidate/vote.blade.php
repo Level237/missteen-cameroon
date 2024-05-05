@@ -9,7 +9,7 @@ Je Vote pour {{ $candidate->candidate_name }}
 
 
     <div class="candidateId" style="visibility: hidden">{{ $candidate->id }}</div>
-
+    <div class="slug" style="visibility: hidden">{{ $candidate->candidate_slug }}</div>
     @if($type==="om")
 
     <div id="root"></div>

@@ -17,6 +17,7 @@ export default function App(){
     const [tokenAccess,setTokenAccess]=useState("")
     const [payToken,setPayToken]=useState("")
     const idCandidate=document.querySelector(".candidateId").innerHTML
+    const slug=document.querySelector(".slug").innerHTML
     const [candidateId]=useState(idCandidate)
     const [status,setStatus]=useState("SUCCESSFULL")
     const [text,setText]=useState("")
@@ -158,7 +159,7 @@ export default function App(){
                                 setInputError('')
                             }else if(result.status=="SUCCESSFULL"){
                                 isMounted.current=false
-                                window.location.href = `${href}/payment/successfull?price=${price}&vote=${vote}&token=${tokenAccess}&payToken=${payToken}&candidateId=${candidateId}&type=Om`;
+                                window.location.href = `${href}/payment/successfull?price=${price}&slug=${slug}&vote=${vote}&token=${tokenAccess}&payToken=${payToken}&candidateId=${candidateId}&type=Om`;
                             }
 
 
