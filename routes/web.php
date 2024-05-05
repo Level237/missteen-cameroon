@@ -34,7 +34,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-
+Route::get('redirect/profile',[PageController::class,'redirect'])->name('redirect.profile');
 Route::get('jeVotePour/{slug}',[PageController::class,'vote'])->name('candidate.vote');
 Route::get('access',[VoteController::class,'payment']);
 Route::get('validation/{token}/{payToken}/{number}/{amount}',[VoteController::class,'paymentValidation']);

@@ -27,4 +27,9 @@ class PageController extends Controller
         $candidate=Candidate::where('candidate_slug',$slug)->firstOrFail();
         return view('candidate.vote',compact('candidate','type'));
     }
+
+    public function redirect(){
+
+        return back()->with('card','true');
+    }
 }
