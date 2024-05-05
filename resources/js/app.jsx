@@ -21,7 +21,7 @@ export default function App(){
     const [status,setStatus]=useState("SUCCESSFULL")
     const [text,setText]=useState("")
     const [viewError,setViewError]=useState("")
-    const [isViewError,setIsViewError]=useState(false)
+    const [price,setPrice]=useState(100)
     const isMounted = useRef(true);
 
     const fetchData=(url)=>{
@@ -70,6 +70,12 @@ export default function App(){
 
 
         if(number==null){
+            setInputError("votre numéro de téléphone ne peut pas etre vide")
+            console.log(inputError);
+            console.log("le");
+            return;
+        }
+        if(price==null){
             setInputError("votre numéro de téléphone ne peut pas etre vide")
             console.log(inputError);
             console.log("le");
@@ -151,7 +157,7 @@ export default function App(){
                                 setInputError('')
                             }else if(result.status=="SUCCESSFULL"){
                                 isMounted.current=false
-                                window.location.href = `${href}/payment/successfull?token=${tokenAccess}&payToken=${payToken}&candidateId=${candidateId}&type=Om`;
+                                window.location.href = `${href}/payment/successfull?price=${price}&token=${tokenAccess}&payToken=${payToken}&candidateId=${candidateId}&type=Om`;
                             }
                         }
 
@@ -200,8 +206,8 @@ export default function App(){
 
     return(
         <>
-
-
+<h2 className='text-center font-bold text-2xl mb-2'>Orange Money</h2>
+{price && <h2 className='text-center font-bold text-sm mb-2'>Vous etes sur le point de faire un achat de {price} Fcfa</h2>}
 {inputError && <div style={{ color:"red" }}>{inputError}</div>}
 
 {error!==null && <div className='text-white flex flex-col gap-4 items-center justify-center bg-red-500 p-6 mb-3 rounded-md' style={{ background:"#ff0037" }}>
@@ -209,14 +215,23 @@ export default function App(){
     <div>{error}</div>
     <div><a href={link} style={{ paddingLeft:"1.25rem",paddingRight:"1.25rem",paddingTop:"0.625rem",paddingBottom:"0.625rem"  }} class="text-white bg-[#0f042d]  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Réessayer</a></div>
     </div>}
-        {visibleCard && <div class="flex flex-col bg-gray-400 px-12  pb-[3rem] pt-[3rem] rounded-lg justify-center items-center" style={{ background:"gray",padding:"3rem" }}>
+        {visibleCard && <div class="flex flex-col bg-gray-400 px-12  pb-[3rem] pt-[3rem] rounded-lg " style={{ background:"gray",padding:"3rem" }}>
 
         <form onSubmit={handleSubmit} class="">
-            <div class="mb-5">
+            <div class="mb-3">
               <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Numéro de téléphone</label>
               <input onChange={numberChanger} value={number} type="text" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  w-full p-4" placeholder="Entrez votre numéro de téléphone" />
             </div>
+            <div className='mb-5'>
+            <label for="countries" class="block mb-2 text-sm font-medium text-gray-900">Nombre de vote</label>
+  <select onChange={(e)=>setPrice(e.target.value)} id="countries" name="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  ">
 
+    <option value="100">01 vote (100 Fcfa)</option>
+    <option value="5000">60 votes (5000 Fcfa)</option>
+    <option value="10000">150 votes (10.000 Fcfa)</option>
+    <option value="100000">2000 votes (100.000 Fcfa)</option>
+  </select>
+            </div>
             {visibleBtn ? <button type='submit'  class="text-white bg-[#0f042d]  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center" style={{ paddingLeft:"1.25rem",paddingRight:"1.25rem",paddingTop:"0.625rem",paddingBottom:"0.625rem"  }}>Envoyer</button>: <button type='submit' disabled style={{ background:"#00000079",color:"white",paddingLeft:"1.25rem",paddingRight:"1.25rem",paddingTop:"0.625rem",paddingBottom:"0.625rem" }} class="text-white bg-gray-400  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
 
 

@@ -66,7 +66,7 @@ class VoteController extends Controller
                 $candidate->save();
                 $payment=new Payment;
                 $payment->vote_id=$vote->id;
-                $payment->amount="100";
+                $payment->amount=$request->price;
                 $payment->payment_type=$request->type;
                 $payment->save();
                 return view('payment.success');
