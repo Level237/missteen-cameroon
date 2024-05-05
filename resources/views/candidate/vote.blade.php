@@ -10,7 +10,10 @@ Je Vote pour {{ $candidate->candidate_name }}
 
     <div class="candidateId" style="visibility: hidden">{{ $candidate->id }}</div>
 
+    @if($type==="om")
     <div id="root"></div>
+    @endif
+
 
 
 </section>
