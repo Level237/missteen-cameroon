@@ -15,9 +15,12 @@ Je Vote pour {{ $candidate->candidate_name }}
     <div id="root"></div>
     @endif
 
-
+    @if($type==="momo")
+    <div id="momo"></div>
+    @endif
 
 </section>
 @viteReactRefresh
 @vite(['resources/js/app.jsx'])
+@vite(['resources/js/momo.jsx'])
 @endsection
