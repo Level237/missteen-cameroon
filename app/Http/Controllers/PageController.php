@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Candidate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class PageController extends Controller
 {
@@ -24,6 +25,7 @@ class PageController extends Controller
 
     public function vote($slug,Request $request){
         $type=$request->type;
+        Session::put('isView',true);
         $candidate=Candidate::where('candidate_slug',$slug)->firstOrFail();
         return view('candidate.vote',compact('candidate','type'));
     }

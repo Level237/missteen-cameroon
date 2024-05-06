@@ -38,7 +38,7 @@ Candidate numero {{ $candidate->id }}
                             <div>
                                 <form action="{{ route('candidate.vote',$candidate->candidate_slug) }}" method="GET">
                                     <input type="hidden" name="type" value="om">
-                                    <button type="submit" class="text-white bg-[#0f042d]  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Voter par Momo</button>
+                                    <button type="submit" class="text-white bg-[#0f042d]  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Voter par OM</button>
                                 </form>
                             </div>
                         </div>

@@ -46,22 +46,16 @@ class VoteController extends Controller
     }
 
     public function success(Request $request){
-        $response=Http::withToken($request->token)->withoutVerifying()->withHeaders([
-            'X-AUTH-TOKEN' => 'WU5PVEVIRUFEOllOT1RFSEVBRDIwMjA='
-        ])->get('https://api-s1.orange.cm/omcoreapis/1.0.2/mp/paymentstatus/'.$request->payToken);
 
-        $status=json_decode($response->getBody());
-         if(isset($status->data->status)){
-            $validation= $status->data->status;
-         }
         //$response=json_decode($validation);
 
             $payToken=Session::get('payToken') ?? null;
+            $isView=Session::get('isView') ?? null;
             //Session::forget('payToken');
 
 
 
-        if($validation==='SUCCESSFULL' && $payToken!==$request->payToken){
+        if($payToken!==$request->payToken && $isView!==null){
             $vote=new Vote;
             $vote->isPaid=true;
             $vote->candidate_id=$request->candidateId;
@@ -76,6 +70,7 @@ class VoteController extends Controller
                 $payment->payment_type=$request->type;
                 $payment->save();
                 $payToken=Session::put('payToken',$request->payToken);
+                Session::forget('isView');
                 return view('payment.success',compact('slug'));
             }
 

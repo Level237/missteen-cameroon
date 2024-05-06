@@ -186,8 +186,8 @@ export default function App(){
 
                const id= setInterval(()=>{
                     getStatus();
-                    console.log("l");
-        },50)
+
+        },500)
 
 
 
