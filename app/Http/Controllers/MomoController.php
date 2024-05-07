@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\Momo\GetPaymentService;
 use App\Services\Momo\InitTokenService;
+use App\Services\Momo\StatusService;
 use Illuminate\Http\Request;
 
 class MomoController extends Controller
@@ -17,5 +18,10 @@ class MomoController extends Controller
             return response()->json(['messageId'=>$messageId,'token'=>$token]);
         }
 
+    }
+
+    public function getStatus($messageId,$token){
+        $status=(new StatusService())->getStatus($messageId,$token);
+        return response()->json(['status'=>$status]);
     }
 }
