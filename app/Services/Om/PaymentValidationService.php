@@ -7,7 +7,7 @@ class PaymentValidationService{
     public function index($token,$payToken,$number,$amount){
         $response=Http::asJson()->withToken($token)->withoutVerifying()->withHeaders([
             'X-AUTH-TOKEN' => 'WU5PVEVIRUFEOllOT1RFSEVBRDIwMjA=',
-        ])->withBody(json_encode(["notifUrl"=>"https://mykipart.com/",
+        ])->withBody(json_encode([
             "channelUserMsisdn"=>"659924757",
             "amount"=>$amount,
             "subscriberMsisdn"=>$number,
