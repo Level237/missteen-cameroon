@@ -11,7 +11,7 @@ class InitTokenService{
         ->withBody('grant_type=client_credentials', 'application/x-www-form-urlencoded')
         ->post('https://omapi-token.ynote.africa/oauth2/token/');
         $tokenResponse=json_decode($response);
-        return $tokenResponse->access_token;
+        return $tokenResponse->access_token ?? null;
     }
 
 }

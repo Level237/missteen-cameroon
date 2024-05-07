@@ -15,7 +15,7 @@ export default function Momo(){
     const [number,setNumber]=useState(null)
     const [error,setError]=useState(null)
     const [tokenAccess,setTokenAccess]=useState("")
-    const [payToken,setPayToken]=useState("")
+    const [messageId,setMessageId]=useState("")
     const idCandidate=document.querySelector(".candidateId").innerHTML
     const slug=document.querySelector(".slug").innerHTML
     const [candidateId]=useState(idCandidate)
@@ -85,40 +85,17 @@ export default function Momo(){
         }
 
         setVisibleBtn(false)
-        const subscription = fetchData(`${href}/access`).subscribe({
+        const subscription = fetchData(`${href}/init/pay/momo`).subscribe({
             next: result => {
                 console.log(result.token);
-
+                console.log(result.messageId);
                 setTokenAccess(result.token)
-                setPayToken(result.payToken)
+                setMessageId(result.messageId)
                 setError(null)
 
                             setVisibleCard(false)
                             setText("En cours de traitement ne fermez pas la page s'il vous plait!...")
-                const subscription2=fetchData(`${href}/validation/${result.token}/${result.payToken}/${number}/1`).subscribe({
-                    next: result => {
-                        if(result.code===20){
-                            setError(t.message)
-                            setVisibleCard(false)
-                        }
-                        else if(result.code===21){
-                            setError(null)
-                            setVisibleCard(false)
-                            console.log(result);
-                            setText("En cours de traitement ne fermez pas la page s'il vous plait!...")
 
-                        }
-
-
-
-                    },
-                    error: err => {
-                        console.error(err);
-                        setError(`une erreur à été  produite,verifié  votre connexion internet et réessayer!`)
-                       setInputError('')
-                    },
-                    complete: () => console.log('Fetch terminé')
-                })
             },
             error: err => {
                 setVisibleCard(false)

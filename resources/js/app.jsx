@@ -19,7 +19,7 @@ export default function App(){
     const idCandidate=document.querySelector(".candidateId").innerHTML
     const slug=document.querySelector(".slug").innerHTML
     const [candidateId]=useState(idCandidate)
-    const [status,setStatus]=useState("SUCCESSFULL")
+    const [status,setStatus]=useState("")
     const [text,setText]=useState("")
     const [viewError,setViewError]=useState("")
     const [price,setPrice]=useState("100")
