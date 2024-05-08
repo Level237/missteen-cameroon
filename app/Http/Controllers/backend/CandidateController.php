@@ -20,14 +20,16 @@ class CandidateController extends Controller
     public function store(Request $request){
         $candidate=new Candidate;
         $candidate->candidate_name=$request->candidate_name;
+        $candidate->username=$request->username;
         $candidate->age=$request->age;
-        $candidate->description=$request->description;
+        $candidate->dossard=$request->dossard;
+        $candidate->poids=$request->poids;
         $candidate->city=$request->city;
         $candidate->size=$request->size;
         $image_path = $request->profile->store('candidates', 'public');
         $candidate->profile=$image_path;
         $candidate->category_id=$request->category_id;
-        $candidate->candidate_slug=$this->slugify($request->candidate_name);
+        $candidate->candidate_slug=$this->slugify($request->username);
         $candidate->save();
         return to_route('candidates.index')->with('success',"candidate créer avec success");
     }

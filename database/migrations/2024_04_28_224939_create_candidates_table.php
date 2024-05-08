@@ -16,8 +16,10 @@ return new class extends Migration
         Schema::create('candidates', function (Blueprint $table) {
             $table->id();
             $table->string('candidate_name')->unique();
+            $table->string('username')->unique();
+            $table->string('dossard')->unique();
+            $table->string('poids');
             $table->string('age');
-            $table->string('description')->nullable();
             $table->string('city');
             $table->string('size');
             $table->integer('score')->default(0);
