@@ -7,7 +7,7 @@
     @vite('resources/css/app.css')
     <title>@yield("title") </title>
 </head>
-<body>
+<body class="overflow-x-hidden ">
 
 
 @include('layouts.frontend.nav-bar')

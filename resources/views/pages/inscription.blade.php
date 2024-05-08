@@ -5,7 +5,7 @@ Inscription
 @endsection
 
 @section('content')
-<section class="relative h-[60vh] bg-left bg-cover bg-[url('asset('bg.png')')]" style="background-image: url('assets/img/bg.png');background-position:center">
+<section class="relative h-[60vh]  bg-left bg-cover bg-[url('asset('bg.png')')]" style="background-image: url('assets/img/bg.png');background-position:center">
     <div class="flex items-center justify-center absolute inset-0 bg-gradient-to-r from-neutral-600 to-[#0f042d] w-100 opacity-[0.9]">
 
     </div>
@@ -17,9 +17,9 @@ Inscription
 
     </section>
 
-    <section class="grid grid-cols-3 mt-12 mx-24 gap-6">
+    <section class="grid grid-cols-3 max-sm:mx-4 max-sm:grid-cols-1 mt-12 mx-24 gap-6">
 
-        <div class="bg-gray-100 px-8 py-5 rounded-xl border">
+        <div class="bg-gray-100 px-8 max-sm:px-2 py-5 rounded-xl border">
 <div class="flex flex-col justify-center gap-5 items-center">
 <div>
     <img src="{{ asset('assets/img/Nouveau logo MITCA sans fond.png') }}" class="h-36" alt="">
@@ -73,7 +73,7 @@ Inscription
 
 
     </section>
-    <section class="grid grid-cols-2 mx-36 gap-12 mt-16 mb-16">
+    <section class="grid grid-cols-2 max-sm:mx-4 max-sm:grid-cols-1 mx-36 gap-12 mt-16 mb-16">
         <div class="bg-gray-100 px-8 py-5 rounded-xl border">
             <div class="flex flex-col justify-center gap-5 items-center">
             <div>
