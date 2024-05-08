@@ -31,6 +31,7 @@ Route::get('test',function(){
 Route::get('/candidate/create',[CandidateController::class,'create'])->name('candidate.create')->middleware('auth');
 Route::get('/list/candidates',[PageController::class,'candidates'])->name('candidate.list');
 Route::get('/payment/successfull',[VoteController::class,'success']);
+Route::get('/payment/successfull/momo',[VoteController::class,'successMomo']);
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

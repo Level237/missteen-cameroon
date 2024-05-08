@@ -35,7 +35,7 @@ class VoteController extends Controller
         return response()->json(["message"=>'Votre paiement a bien été initialiser,veuillez confirmer votre paiement',"code"=>21]);
     }
 
-    public function getPaymentStatus($token,$payToken,$id){
+    public function getPaymentStatus($token,$payToken){
         $validation=(new StatusPaymentService())->status($token,$payToken);
         //$response=json_decode($validation);
 
@@ -45,36 +45,60 @@ class VoteController extends Controller
 
     }
 
+    public function successMomo(Request $request){
+        $messageId=Session::get('messageId') ?? null;
+        $isView=Session::get('isView') ?? null;
+        $slug=$request->slug;
+        if($messageId!==$request->messageId && $isView!==null){
+
+            $saveCandidate=$this->saveCandidate($request->candidateId,$request->slug,$request->vote,$request->price,$request->type);
+            if($saveCandidate==true){
+                Session::put('messageId',$request->messageId);
+            }
+        }
+
+        return view('payment.success',compact('slug'));
+    }
+
     public function success(Request $request){
 
         //$response=json_decode($validation);
 
             $payToken=Session::get('payToken') ?? null;
+
             $isView=Session::get('isView') ?? null;
             //Session::forget('payToken');
-
+            $slug=$request->slug;
 
 
         if($payToken!==$request->payToken && $isView!==null){
-            $vote=new Vote;
+
+            $saveCandidate=$this->saveCandidate($request->candidateId,$request->slug,$request->vote,$request->price,$request->type);
+            if($saveCandidate==true){
+                $payToken=Session::put('payToken',$request->payToken);
+
+            }
+    }
+    return view('payment.success',compact('slug'));
+
+}
+
+    public function saveCandidate($candidateId,$slug,$score,$price,$type){
+        $vote=new Vote;
             $vote->isPaid=true;
-            $vote->candidate_id=$request->candidateId;
-            $slug=$request->slug;
+            $vote->candidate_id=$candidateId;
+            $slug=$slug;
             if($vote->save()){
-                $candidate=Candidate::find($request->candidateId);
-                $candidate->score=$candidate->score+$request->vote;
+                $candidate=Candidate::find($candidateId);
+                $candidate->score=$candidate->score+$score;
                 $candidate->save();
                 $payment=new Payment;
                 $payment->vote_id=$vote->id;
-                $payment->amount=$request->price;
-                $payment->payment_type=$request->type;
+                $payment->amount=$price;
+                $payment->payment_type=$type;
                 $payment->save();
-                $payToken=Session::put('payToken',$request->payToken);
                 Session::forget('isView');
-                return view('payment.success',compact('slug'));
+                return true;
             }
-
-    }else{
-        return "Unable to process payment";
-    }}
+    }
 }

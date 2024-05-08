@@ -87,14 +87,21 @@ export default function Momo(){
         setVisibleBtn(false)
         const subscription = fetchData(`${href}/init/pay/momo`).subscribe({
             next: result => {
-                console.log(result.token);
-                console.log(result.messageId);
-                setTokenAccess(result.token)
-                setMessageId(result.messageId)
-                setError(null)
+                if(result.status===200){
+                    console.log(result.token);
+                    console.log(result.messageId);
+                    setTokenAccess(result.token)
+                    setMessageId(result.messageId)
+                    setError(null)
 
-                            setVisibleCard(false)
-                            setText("En cours de traitement ne fermez pas la page s'il vous plait!...")
+                                setVisibleCard(false)
+                                setText("En cours de traitement ne fermez pas la page s'il vous plait!...")
+                }else if(result.status===404){
+                    setVisibleCard(false)
+                    setError(`une erreur à été  produite,verifié  votre connexion internet et réessayer!`)
+                    setInputError('')
+                }
+
 
             },
             error: err => {
@@ -118,7 +125,7 @@ export default function Momo(){
 
 
     const getStatus=()=>{
-        const subscription3=fetchData(`${href}/status/${tokenAccess}/${payToken}/${candidateId}`).subscribe({
+        const subscription3=fetchData(`${href}/status/pay/momo/${messageId}/${tokenAccess}`).subscribe({
             next: result => {
                 if(result.status && !result.status.headers ){
                     setStatus(result.status)
@@ -132,11 +139,10 @@ export default function Momo(){
 
 
                             }else if(result.status=='FAILED'){
-                                setError("Votre paiement a été echoué!...")
-                                setInputError('')
+                                window.location.href = `${href}/payment/successfull/momo?price=${price}&slug=${slug}&vote=${vote}&token=${tokenAccess}&messageId=${messageId}&candidateId=${candidateId}&type=Momo`;
                             }else if(result.status=="SUCCESSFULL"){
                                 isMounted.current=false
-                                window.location.href = `${href}/payment/successfull?price=${price}&slug=${slug}&vote=${vote}&token=${tokenAccess}&payToken=${payToken}&candidateId=${candidateId}&type=Om`;
+                                window.location.href = `${href}/payment/successfull/momo?price=${price}&slug=${slug}&vote=${vote}&token=${tokenAccess}&messageId=${messageId}&candidateId=${candidateId}&type=Momo`;
                             }
 
 

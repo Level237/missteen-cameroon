@@ -13,9 +13,9 @@ class MomoController extends Controller
         $token=(new InitTokenService())->initToken("3h31rsuu2sg6ggsn6s7u8s6cgs","10jcqne5mgqfhvj9duvppbknr99lokjmfq8bisot89tr5iu6o2m1");
         $messageId=(new GetPaymentService($token))->pay($token);
         if($messageId==null || $token==null){
-            return response()->json(['error',404]);
+            return response()->json(['status',404]);
         }else{
-            return response()->json(['messageId'=>$messageId,'token'=>$token]);
+            return response()->json(['messageId'=>$messageId,'token'=>$token,'status'=>200]);
         }
 
     }
