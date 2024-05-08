@@ -23,6 +23,9 @@
     document.getElementById('sub').addEventListener("mouseout",mouseOut)
 
     function mouseOver() {
+        document.getElementById("sub2").style.display= "none";
+        document.getElementById("sub3").style.display= "none";
+        document.getElementById("sub4").style.display= "none";
         document.getElementById("sub").style.display = "flex";
         console.log('le')
       }
@@ -30,7 +33,41 @@
         document.getElementById("sub").style.display= "none";
         console.log('le')
       }
-console.log('heel')
+
+      const menu2=document.getElementById('menu1');
+
+
+
+      function mouseOver2() {
+        document.getElementById("sub").style.display= "none";
+        document.getElementById("sub3").style.display= "none";
+        document.getElementById("sub4").style.display= "none";
+          document.getElementById("sub2").style.display = "flex";
+          console.log('le')
+        }
+        function mouseOut2() {
+          document.getElementById("sub2").style.display= "none";
+        }
+        function mouseOver1() {
+            document.getElementById("sub").style.display= "none";
+            document.getElementById("sub2").style.display= "none";
+            document.getElementById("sub4").style.display= "none";
+              document.getElementById("sub3").style.display = "flex";
+              console.log('le')
+            }
+            function mouseOut1() {
+              document.getElementById("sub3").style.display= "none";
+            }
+            function mouseOver4() {
+                document.getElementById("sub").style.display= "none";
+                document.getElementById("sub3").style.display= "none";
+                document.getElementById("sub2").style.display= "none";
+                  document.getElementById("sub4").style.display = "flex";
+                  console.log('le')
+                }
+                function mouseOut4() {
+                  document.getElementById("sub4").style.display= "none";
+                }
 </script>
 </body>
 </html>
