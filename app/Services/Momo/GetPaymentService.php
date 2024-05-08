@@ -12,7 +12,7 @@ class GetPaymentService{
                 "notifUrl"=>"notifUrl",
                 'subscriberMsisdn' => '653001393',
                 'description' => 'Vote d\'une candidate',
-                'amount' => "10",
+                'amount' => "1",
                 "order_id"=>"order",
                 'customersecret'=>"8adbddd16a48fac2a5696ae995f1095cd8bcfb30483ddaa7db36f74ec06f3056",
                 'customerkey'=>"9849e051-7abc-58e9-be25-9dd246f786c7",
