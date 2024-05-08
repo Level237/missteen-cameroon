@@ -210,12 +210,12 @@ export default function App(){
 {price && <h2 className='text-center font-bold text-sm mb-2'>Vous etes sur le point de faire un achat de {vote} vote(s) {price} Fcfa</h2>}
 {inputError && <div style={{ color:"red" }}>{inputError}</div>}
 
-{error!==null && <div className='text-white flex flex-col gap-4 items-center justify-center bg-red-500 p-6 mb-3 rounded-md' style={{ background:"#ff0037" }}>
+{error!==null && <div className='text-white max-sm:mx-4 flex flex-col gap-4 items-center justify-center bg-red-500 p-6 mb-3 rounded-md' style={{ background:"#ff0037" }}>
 
-    <div>{error}</div>
+    <div className='max-sm:mx-4'>{error}</div>
     <div><a href={link} style={{ paddingLeft:"1.25rem",paddingRight:"1.25rem",paddingTop:"0.625rem",paddingBottom:"0.625rem"  }} class="text-white bg-[#0f042d]  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Réessayer</a></div>
     </div>}
-        {visibleCard && <div class="flex flex-col bg-gray-400 px-12  pb-[3rem] pt-[3rem] rounded-lg " style={{ background:"gray",padding:"3rem" }}>
+        {visibleCard && <div class="flex flex-col max-sm:mx-4 bg-gray-400 px-12  pb-[3rem] pt-[3rem] rounded-lg " style={{ background:"gray",padding:"3rem" }}>
 
         <form onSubmit={handleSubmit} class="">
             <div class="mb-3">

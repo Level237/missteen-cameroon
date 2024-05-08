@@ -17,7 +17,7 @@ Listes des candidates
    <section class="h-10 bg-[#0f042d]">
 
     </section>
-    <
+
     <section class="grid mb-36 mx-[6rem] mt-12 grid-cols-3 max-sm:mx-4 gap-5 max-sm:grid-cols-1">
         @foreach ($candidates as $candidate)
         <div class="flex flex-col bg-gray-300 rounded-2xl py-12  items-center">

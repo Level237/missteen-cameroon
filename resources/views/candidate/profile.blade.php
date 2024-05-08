@@ -27,13 +27,13 @@ Candidate numero {{ $candidate->id }}
             <!-- Modal body -->
             <div class="p-4 md:p-5 space-y-4">
                 <div class="flex flex-col">
-                    <div class="flex justify-around   items-center">
+                    <div class="flex justify-around max-sm:gap-3  items-center">
                         <div>
                             <img src="{{ asset('assets/img/om.png') }}" class="h-24" alt="">
                         </div>
                         <div class="flex flex-col gap-4">
                             <div>
-                                <h2 class="text-3xl font-bold">Voter par Orange Money</h2>
+                                <h2 class="text-3xl font-bold max-sm:text-2xl">Voter par Orange Money</h2>
                             </div>
                             <div>
                                 <form action="{{ route('candidate.vote',$candidate->candidate_slug) }}" method="GET">
@@ -48,13 +48,13 @@ Candidate numero {{ $candidate->id }}
             </div>
 <div class="p-4 md:p-5 space-y-4">
                 <div class="flex flex-col">
-                    <div class="flex justify-around border-gray-600 border-t p-3  items-center">
+                    <div class="flex justify-around border-gray-600 gap-3 border-t p-3  items-center">
                         <div>
-                            <img src="{{ asset('assets/img/momo.jpeg') }}" class="h-[4rem] w-[7.1rem]" alt="">
+                            <img src="{{ asset('assets/img/momo.jpeg') }}" class="h-[4rem]" alt="">
                         </div>
                         <div class="flex flex-col gap-4">
                             <div>
-                                <h2 class="text-3xl font-bold">Voter par Mobile Money</h2>
+                                <h2 class="text-3xl max-sm:text-2xl font-bold">Voter par Mobile Money</h2>
                             </div>
                             <div>
                                 <form action="{{ route('candidate.vote',$candidate->candidate_slug) }}" method="GET">
@@ -89,7 +89,7 @@ Candidate numero {{ $candidate->id }}
 
         </section>
        <section class="h-10 relative bg-[#0f042d] ">
-        <div class="absolute bottom-[-4rem] right-[45%] ">
+        <div class="absolute bottom-[-4rem] max-sm:right-[29%] right-[45%] ">
             <div class="">
                 <img class="w-[10rem]   h-[10rem] rounded-full" src="{{ Storage::url($candidate->profile) }}" alt="{{ $candidate->candidate_name }}">
             </div>
