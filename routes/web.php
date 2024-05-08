@@ -5,6 +5,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\VoteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\backend\CandidateController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MomoController;
 
 /*
@@ -27,7 +28,7 @@ Route::get('test',function(){
     return view('test');
 })->name('test');
 
-
+Route::get('/contact',[ContactController::class,'index'])->name('contact.index');
 Route::get('/candidate/create',[CandidateController::class,'create'])->name('candidate.create')->middleware('auth');
 Route::get('/list/candidates',[PageController::class,'candidates'])->name('candidate.list');
 Route::get('/payment/successfull',[VoteController::class,'success']);
