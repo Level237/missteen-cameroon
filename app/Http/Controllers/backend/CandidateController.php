@@ -45,4 +45,9 @@ class CandidateController extends Controller
         setlocale(LC_ALL, $oldLocale);
         return $clean;
     }
+
+    public function missElu($category){
+
+        return view('candidate.miss-elues',compact('category'));
+    }
 }

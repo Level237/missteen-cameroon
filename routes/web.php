@@ -28,6 +28,9 @@ Route::get('test',function(){
     return view('test');
 })->name('test');
 
+
+Route::get('/miss/elues/{category}',[CandidateController::class,'missElu'])->name('miss.elues');
+
 Route::get('/contact',[ContactController::class,'index'])->name('contact.index');
 Route::get('/candidate/create',[CandidateController::class,'create'])->name('candidate.create')->middleware('auth');
 Route::get('/list/candidates',[PageController::class,'candidates'])->name('candidate.list');
