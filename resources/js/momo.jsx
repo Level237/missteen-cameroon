@@ -139,7 +139,8 @@ export default function Momo(){
 
 
                             }else if(result.status=='FAILED'){
-                                window.location.href = `${href}/payment/successfull/momo?price=${price}&slug=${slug}&vote=${vote}&token=${tokenAccess}&messageId=${messageId}&candidateId=${candidateId}&type=Momo`;
+                                setError("Votre paiement a été echoué,verifié que vous aviez assez de fond dans votre compte Mobile Money!...")
+                                setInputError('')
                             }else if(result.status=="SUCCESSFULL"){
                                 isMounted.current=false
                                 window.location.href = `${href}/payment/successfull/momo?price=${price}&slug=${slug}&vote=${vote}&token=${tokenAccess}&messageId=${messageId}&candidateId=${candidateId}&type=Momo`;

@@ -155,7 +155,7 @@ export default function App(){
 
 
                             }else if(result.status=='FAILED'){
-                                setError("Votre paiement a été echoué!...")
+                                setError("Votre paiement a été echoué,verifié que vous aviez assez de fond dans votre compte Orange Money!...")
                                 setInputError('')
                             }else if(result.status=="SUCCESSFULL"){
                                 isMounted.current=false
