@@ -102,7 +102,7 @@ class="rounded-sm border border-stroke bg-white px-5 pb-2.5 pt-6 shadow-default 
             <td
               class="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11"
             >
-              <h5 class="font-medium text-black dark:text-white"><img class="w-12 h-12 rounded-full" src="{{ asset('assets/img/miss.jpg') }}"/></h5>
+              <h5 class="font-medium text-black dark:text-white"><img class="w-12 h-12 rounded-full" src="{{ Storage::url($candidate->profile) }}"/></h5>
               <p class="text-sm mt-2 text-black font-bold">{{ $candidate->candidate_name }}</p>
             </td>
             <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
