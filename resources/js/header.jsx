@@ -24,9 +24,9 @@ export default function Header(){
               </div>
               <div className="mt-[rem] ml-10 text-white font-bold text-xl flex flex-col" style={{ marginLeft:"2rem",marginTop:"4rem" }}>
               <div className='ml-10' >
-                  <h2>
+                  <a href='/inscription'>
                    Inscription
-                    </h2>
+                    </a>
                 </div>
                 <div className='mt-5' >
                   <h2>
