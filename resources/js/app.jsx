@@ -2,7 +2,7 @@ import { createRoot } from 'react-dom/client'
 import React, { useEffect, useRef, useState } from 'react';
 import { fromFetch } from 'rxjs/fetch';
 import { switchMap, catchError } from 'rxjs/operators';
-import { of } from 'rxjs';
+
 
 export default function App(){
     const href = window.location.origin;
