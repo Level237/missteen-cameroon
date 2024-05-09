@@ -42,4 +42,12 @@ Candidate Régionales
         @endforeach
 
     </section>
+    @if(count($candidates) == 0)
+    <div class="flex  mx-36 mb-10 mt-[-5rem]  ">
+        <div class="flex flex-col justify-center bg-gray-300 w-full rounded-2xl py-12 px-3   items-center">
+            <h2 class="text-lg font-bold">Aucun candidat enregistré</h2>
+        </div>
+    </div>
+
+    @endif
 @endsection
