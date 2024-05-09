@@ -20,13 +20,16 @@ Listes des candidates
 
     <section class="grid mb-36 mx-[6rem] mt-12 grid-cols-3 max-sm:mx-4 gap-5 max-sm:grid-cols-1">
         @foreach ($candidates as $candidate)
-        <div class="flex flex-col bg-gray-300 rounded-2xl py-12  items-center">
+        <div class="flex flex-col bg-gray-300 rounded-2xl py-12 px-6  items-center">
             <div class="flex justify-between items-center gap-4">
-                <img class="w-[7rem] h-[7rem] rounded-full" src="{{ Storage::url($candidate->profile) }}" alt="">
+                <img class="w-[12rem] h-[12rem] rounded-full" src="{{ Storage::url($candidate->profile) }}" alt="">
                 <div class="flex flex-col">
-                    <h2 class="text-xl font-bold">{{ $candidate->candidate_name }}</h2>
+                    <h2 class="text-lg font-bold">{{ $candidate->candidate_name }}</h2>
                     <div>
                         <p>Age: <span class="font-bold">{{ $candidate->age }} ans</span></p>
+                    </div>
+                    <div>
+                        <p>Catégorie: <span class="font-bold">{{ $candidate->category->category_title }}</span></p>
                     </div>
                     <div>
                         <p>Ville: <span class="font-bold">{{ $candidate->city }}</span></p>

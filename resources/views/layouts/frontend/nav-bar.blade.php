@@ -72,7 +72,8 @@
             <a onmouseover="mouseOver4()"   class="block py-2 cursor-pointer px-3  text-white rounded md:bg-transparent  md:p-0" aria-current="page">Voter</a>
             <div onmouseover="mouseOver4()" onmouseout="mouseOut4()" id="sub4" class="absolute hidden   flex-col bg-white mt-5 pb-[4rem] ml-[-2rem] pt-4 pl-3 w-[12rem]   h-16">
                 <div class="text-sm hover:text-[#f1c802] cursor-pointer mb-1">
-                   Nationale
+                    <a href="{{ route('candidate.list') }}"> Nationale</a>
+
                 </div>
                 <div class="text-sm hover:text-[#f1c802] cursor-pointer mb-1">
                     <a href="{{ route('candidate.list') }}"> Régionale</a>
