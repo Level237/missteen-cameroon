@@ -18,19 +18,24 @@ export default function Header(){
                 </svg>
               </button>
 
-             {visible &&  <div  className="fixed z-[99999999] lg:hidden top-0 right-0 bottom-[100%]   w-[70vw] h-[100%]  bg-[#cc3333]" style={{ position:"fixed",zIndex:99999999,background:"#0f042d",width:"70vw",height:"100vh" }}>
+             {visible &&  <div  className="fixed z-[99999999] lg:hidden top-0 right-0 bottom-[100%] overflow-y-auto   w-[70vw] h-[100%]  bg-[#cc3333]" style={{ position:"fixed",zIndex:99999999,background:"#0f042d",width:"70vw",height:"100vh" }}>
               <div className=" text-white text-xl " style={{ marginLeft:"2rem" }}>
                 <button onClick={ handleVisible} className='border-2 border-white rounded-2xl  px-5 py-2 mt-5 ml-10'>Fermer</button>
               </div>
-              <div className="mt-[rem] ml-10 text-white font-bold text-xl flex flex-col" style={{ marginLeft:"2rem",marginTop:"4rem" }}>
+              <div className="mt-[rem] ml-10 text-white font-bold text-xl flex flex-col" style={{ marginLeft:"2rem",marginTop:"2rem" }}>
               <div className='ml-10' >
                   <a href='/inscription'>
-                   Inscription
+                  A propos de nous
                     </a>
+                    <div className='text-sm mt-1 ' style={{ marginLeft:"1rem" }}>
+                        <h2 className='mb-2'>Du Concours</h2>
+                        <h2 className='mb-2'>Directeur Régionaux</h2>
+
+                    </div>
                 </div>
                 <div className='mt-5' >
                   <h2>
-                  Nos Reines
+                  Hall Of Fame
                     </h2>
                     <div className='text-sm mt-1 ' style={{ marginLeft:"1rem" }}>
                         <h2 className='mb-2'>Mini miss Cameroon</h2>
@@ -38,21 +43,36 @@ export default function Header(){
                         <h2 className='mb-2'>Miss Teen Cameroon</h2>
                         <h2 className='mb-2'>Miss Teen Petite Cameroon</h2>
                         <h2 className='mb-2'>Miss Pre-Teen Cameroon</h2>
+                        <h2 className='mb-2'>MissTer Teen</h2>
                     </div>
                 </div>
                 <div className='mt-2' >
                   <h2>
-                   Nouvelles
+                  Postuler
                     </h2>
+                    <div className='text-sm mt-1 ' style={{ marginLeft:"1rem" }}>
+                        <h2 className='mb-2'>Candidats</h2>
+                        <h2 className='mb-2'>Sponsors</h2>
+                        <h2 className='mb-2'>Directeur Régional</h2>
+                    </div>
                 </div>
                 <div className='mt-5' >
                   <h2>
-                 Sponsors
+                Voter
                     </h2>
+                    <div className='text-sm mt-1 ' style={{ marginLeft:"1rem" }}>
+                        <h2 className='mb-2'>Nationale</h2>
+                        <h2 className='mb-2'>Régionale</h2>
+                    </div>
                 </div>
                 <div className='mt-5' >
                   <h2>
-               Contactez nous
+              Nous Contacter
+                    </h2>
+                </div>
+                <div className='mt-3 mb-5' >
+                  <h2>
+              Acheter un Ticket
                     </h2>
                 </div>
               </div>

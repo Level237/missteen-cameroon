@@ -28,7 +28,7 @@
     </div>
         </li>
         <li id="menu1" class="relative">
-          <a href="{{ route('candidate.list') }}" class="block py-2 px-3 text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#f1c802] md:p-0     md:dark:hover:bg-transparent dark:border-gray-700">Hall Of Fame</a>
+          <a class="block cursor-pointer py-2 px-3 text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#f1c802] md:p-0     md:dark:hover:bg-transparent dark:border-gray-700">Hall Of Fame</a>
           <div id="sub" class="absolute hidden   flex-col bg-white mt-5 pb-[9rem] ml-[-2rem] pt-4 pl-3 w-[12rem]   h-16">
             <div class="text-sm hover:text-[#f1c802] cursor-pointer mb-1">
                 Mini miss Cameroon
@@ -83,10 +83,10 @@
         </div>
           </li>
         <li>
-          <a href="{{ route('contact.index') }}" class="block py-2 px-3 text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#f1c802] md:p-0     md:dark:hover:bg-transparent dark:border-gray-700">Nous Contactez</a>
+          <a href="{{ route('contact.index') }}" class="block py-2 px-3 text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#f1c802] md:p-0     md:dark:hover:bg-transparent dark:border-gray-700">Nous Contacter</a>
         </li>
         <li>
-          <a href="{{ route('contact.index') }}" class="block py-2 px-3 text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#f1c802] md:p-0     md:dark:hover:bg-transparent dark:border-gray-700">Achetez un ticket</a>
+          <a href="{{ route('contact.index') }}" class="block py-2 px-3 text-white  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#f1c802] md:p-0     md:dark:hover:bg-transparent dark:border-gray-700">Acheter un ticket</a>
         </li>
       </ul>
     </div>
