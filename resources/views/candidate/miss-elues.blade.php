@@ -18,7 +18,7 @@ Listes des candidates
     </section>
 
 
-    <section class="grid grid-cols-3 max-sm:mx-4 max-sm:grid-cols-1 mt-12 mx-24 gap-6">
+    <section class="grid grid-cols-3 max-sm:mx-4 mb-12 max-sm:grid-cols-1 mt-12 mx-24 gap-6">
         @if($category==="miss-teen-cameroon")
         <div class="flex flex-col bg-gray-300 rounded-2xl pb-12  ">
             <div class="flex justify-center">
