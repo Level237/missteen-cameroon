@@ -62,7 +62,9 @@ export default function Header(){
                     </h2>
                     <div className='text-sm mt-1 ' style={{ marginLeft:"1rem" }}>
                         <h2 className='mb-2'>Nationale</h2>
-                        <h2 className='mb-2'>Régionale</h2>
+                        <h2 className='mb-2'>
+                            <a href='/list/candidates'>Régionale</a>
+                            </h2>
                     </div>
                 </div>
                 <div className='mt-5' >

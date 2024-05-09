@@ -1,7 +1,7 @@
 @extends('layouts.frontend.main')
 
 @section('title')
-Listes des candidates
+Candidate Régionales
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@ Listes des candidates
 
     </div>
     <div class="absolute inset-0 flex items-center justify-center">
-    <h2 class="text-5xl max-sm:text-4xl font-bold text-white max-sm:text-center">Candidates</h2>
+    <h2 class="text-5xl max-sm:text-3xl  font-bold text-white max-sm:text-center">Candidate Régionales</h2>
     </div>
     </section>
    <section class="h-10 bg-[#0f042d]">
