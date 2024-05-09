@@ -48,7 +48,7 @@
                 Miss Pre-Teen Cameroon
             </div>
             <div class="text-sm hover:text-[#f1c802] cursor-pointer mb-1">
-                Mister Teen
+                Mister Teen Cameroon
             </div>
     </div>
         </li>

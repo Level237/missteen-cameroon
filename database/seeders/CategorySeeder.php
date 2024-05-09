@@ -28,5 +28,8 @@ class CategorySeeder extends Seeder
         Category::create([
             'category_title'=>'Miss Pre-Teen'
         ]);
+        Category::create([
+            'category_title'=>'Mister Teen'
+        ]);
     }
 }

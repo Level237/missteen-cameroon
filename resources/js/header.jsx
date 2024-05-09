@@ -43,7 +43,7 @@ export default function Header(){
                         <h2 className='mb-2'><a href='/miss/elues/miss-teen-cameroon'>Miss Teen Cameroon</a></h2>
                         <h2 className='mb-2'>Miss Teen Petite Cameroon</h2>
                         <h2 className='mb-2'>Miss Pre-Teen Cameroon</h2>
-                        <h2 className='mb-2'>MissTer Teen</h2>
+                        <h2 className='mb-2'>MissTer Teen Cameroon</h2>
                     </div>
                 </div>
                 <div className='mt-2' >
