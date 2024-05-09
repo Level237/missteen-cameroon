@@ -21,9 +21,9 @@ Listes des candidates
     <section class="grid mb-36 mx-[6rem] mt-12 grid-cols-3 max-sm:mx-4 gap-5 max-sm:grid-cols-1">
         @foreach ($candidates as $candidate)
         <div class="flex flex-col bg-gray-300 rounded-2xl py-12 px-6  items-center">
-            <div class="flex justify-between items-center gap-4">
+            <div class="flex max-sm:flex-col max-sm:justify-center justify-between items-center gap-4">
                 <img class="w-[12rem] h-[12rem] rounded-full" src="{{ Storage::url($candidate->profile) }}" alt="">
-                <div class="flex flex-col">
+                <div class="flex flex-col max-sm:justify-center max-sm:items-center">
                     <h2 class="text-lg font-bold">{{ $candidate->candidate_name }}</h2>
                     <div>
                         <p>Age: <span class="font-bold">{{ $candidate->age }} ans</span></p>
@@ -35,7 +35,7 @@ Listes des candidates
                         <p>Ville: <span class="font-bold">{{ $candidate->city }}</span></p>
                     </div>
 
-                    <a href="{{ route('candidate.profile', $candidate->candidate_slug) }}" class="bg-[#0f042d] text-center  text-white px-2 mt-2 py-1 rounded-md">Voter</a>
+                    <a href="{{ route('candidate.profile', $candidate->candidate_slug) }}" class="bg-[#0f042d] text-center max-sm:py-3 max-sm:px-[8rem]  text-white px-2 mt-2 py-1 rounded-md">Voter</a>
                 </div>
 
             </div>
