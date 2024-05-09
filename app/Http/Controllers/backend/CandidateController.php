@@ -65,6 +65,12 @@ class CandidateController extends Controller
         return to_route('candidates.index')->with('success',"candidate mis à jour avec success");
     }
 
+    public function delete($id){
+        $candidate=Candidate::find($id);
+        $candidate->delete();
+        return to_route('candidates.index')->with('success',"candidate supprimé avec success");
+    }
+
     function slugify($string, $delimiter = '-') {
         $oldLocale = setlocale(LC_ALL, '0');
         setlocale(LC_ALL, 'en_US.UTF-8');

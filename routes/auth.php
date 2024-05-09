@@ -57,6 +57,7 @@ Route::middleware('auth')->group(function () {
     Route::get('candidates',[CandidateController::class,'index'])->name('candidates.index');
     Route::get('candidates/edit/{id}',[CandidateController::class,'edit'])->name('candidate.edit');
     Route::put('candidates/update/{id}',[CandidateController::class,'update'])->name('candidate.update');
+    Route::delete('candidates/delete/{id}',[CandidateController::class,'delete'])->name('candidate.delete');
     Route::post('candidate/store',[CandidateController::class,'store'])->name('candidate.store');
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
