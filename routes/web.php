@@ -30,7 +30,7 @@ Route::get('test',function(){
 
 
 Route::get('/miss/elues/{category}',[CandidateController::class,'missElu'])->name('miss.elues');
-
+Route::post('send',[ContactController::class,"sendContact"])->name('contact.send');
 Route::get('/contact',[ContactController::class,'index'])->name('contact.index');
 Route::get('/candidate/create',[CandidateController::class,'create'])->name('candidate.create')->middleware('auth');
 Route::get('/list/candidates',[PageController::class,'candidates'])->name('candidate.list');
@@ -50,7 +50,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('contact/list',[ContactController::class,'list'])->name('contact.list');
 });
+
 
 Route::get('init/pay/momo',[MomoController::class,'initPay']);
 Route::get('status/pay/momo/{messageId}/{token}',[MomoController::class,'getStatus']);
