@@ -39,8 +39,8 @@ export default function Header(){
                     </h2>
                     <div className='text-sm mt-1 ' style={{ marginLeft:"1rem" }}>
                         <h2 className='mb-2'>Mini miss Cameroon</h2>
-                        <h2 className='mb-2'>Miss Teen Curve Cameroon</h2>
-                        <h2 className='mb-2'>Miss Teen Cameroon</h2>
+                        <h2 className='mb-2'><a href='/miss/elues/miss-teen-curve'>Miss Teen Curve Cameroon</a></h2>
+                        <h2 className='mb-2'><a href='/miss/elues/miss-teen-cameroon'>Miss Teen Cameroon</a></h2>
                         <h2 className='mb-2'>Miss Teen Petite Cameroon</h2>
                         <h2 className='mb-2'>Miss Pre-Teen Cameroon</h2>
                         <h2 className='mb-2'>MissTer Teen</h2>
@@ -51,7 +51,7 @@ export default function Header(){
                   Postuler
                     </h2>
                     <div className='text-sm mt-1 ' style={{ marginLeft:"1rem" }}>
-                        <h2 className='mb-2'>Candidats</h2>
+                        <h2 className='mb-2'><a href='/inscription'>Candidats</a></h2>
                         <h2 className='mb-2'>Sponsors</h2>
                         <h2 className='mb-2'>Directeur Régional</h2>
                     </div>
@@ -67,7 +67,8 @@ export default function Header(){
                 </div>
                 <div className='mt-5' >
                   <h2>
-              Nous Contacter
+                    <a href='/contact'>Nous Contacter</a>
+
                     </h2>
                 </div>
                 <div className='mt-3 mb-5' >
