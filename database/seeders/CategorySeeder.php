@@ -14,19 +14,19 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         Category::create([
-            'category_title'=>'Miss Teen Cameroon'
+            'category_title'=>'Miss Teen'
         ]);
         Category::create([
-            'category_title'=>'Mister Teen Cameroon'
+            'category_title'=>'Mister Teen'
         ]);
         Category::create([
-            'category_title'=>'Miss Teen Petite Cameroon'
+            'category_title'=>'Miss Teen Petite'
         ]);
         Category::create([
-            'category_title'=>'Miss Teen Curve Cameroon'
+            'category_title'=>'Miss Teen Curve'
         ]);
         Category::create([
-            'category_title'=>'Miss Pre-Teen Cameroon'
+            'category_title'=>'Miss Pre-Teen'
         ]);
     }
 }

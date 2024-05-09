@@ -228,6 +228,7 @@ export default function Momo(){
   }} id="countries" name="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  ">
 
     <option value="100">01 vote (100 Fcfa)</option>
+    <option value="1000">11 votes (1000 Fcfa)</option>
     <option value="5000">60 votes (5000 Fcfa)</option>
     <option value="10000">150 votes (10.000 Fcfa)</option>
     <option value="100000">2000 votes (100.000 Fcfa)</option>

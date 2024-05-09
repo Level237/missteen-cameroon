@@ -18,22 +18,20 @@ Candidate Régionales
 
     </section>
 
-    <section class="grid mb-36 mx-[6rem] mt-12 grid-cols-3 max-sm:mx-4 gap-5 max-sm:grid-cols-1">
+    <section class="grid mb-36 mx-[6rem] mt-12 grid-cols-3 max-sm:mx-4 gap-3 max-sm:grid-cols-1">
         @foreach ($candidates as $candidate)
-        <div class="flex flex-col bg-gray-300 rounded-2xl py-12 px-6  items-center">
+        <div class="flex flex-col bg-gray-300 w-full rounded-2xl py-12 px-3   items-center">
             <div class="flex max-sm:flex-col max-sm:justify-center justify-between items-center gap-4">
-                <img class="w-[12rem] h-[12rem] rounded-full" src="{{ Storage::url($candidate->profile) }}" alt="">
+                <img class="w-[8rem] h-[8rem] rounded-full" src="{{ Storage::url($candidate->profile) }}" alt="">
                 <div class="flex flex-col max-sm:justify-center max-sm:items-center">
-                    <h2 class="text-lg font-bold">{{ $candidate->candidate_name }}</h2>
+                    <h2 class="text-lg font-bold">{{ $candidate->category->category_title }}</h2>
                     <div>
-                        <p>Age: <span class="font-bold">{{ $candidate->age }} ans</span></p>
+                        <p><span class="text-lg font-normal">{{ $candidate->city }} #{{ $candidate->dossard }}</span></p>
                     </div>
                     <div>
-                        <p>Catégorie: <span class="font-bold">{{ $candidate->category->category_title }}</span></p>
+                        <p><span class="font-normal text-lg">{{ ucfirst($candidate->username) }}</span></p>
                     </div>
-                    <div>
-                        <p>Ville: <span class="font-bold">{{ $candidate->city }}</span></p>
-                    </div>
+
 
                     <a href="{{ route('candidate.profile', $candidate->candidate_slug) }}" class="bg-[#0f042d] text-center max-sm:py-3 max-sm:px-[8rem]  text-white px-2 mt-2 py-1 rounded-md">Voter</a>
                 </div>

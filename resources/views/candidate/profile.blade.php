@@ -1,7 +1,7 @@
 @extends('layouts.frontend.main')
 
 @section('title')
-Candidate numero {{ $candidate->id }}
+Candidate numero {{ $candidate->dossard }}
 @endsection
 
 @section('content')
@@ -84,7 +84,7 @@ Candidate numero {{ $candidate->id }}
 
         </div>
         <div class="absolute inset-0 flex items-center justify-center">
-        <h2 class="text-5xl max-sm:text-4xl font-bold text-white max-sm:text-center">Candidate numero {{ $candidate->id }}</h2>
+        <h2 class="text-5xl max-sm:text-4xl font-bold text-white max-sm:text-center">Candidate numero {{ $candidate->dossard }}</h2>
         </div>
 
         </section>
@@ -97,21 +97,36 @@ Candidate numero {{ $candidate->id }}
         </section>
 
     <section class="mt-[5rem] flex flex-col justify-center items-center">
-        <h2 class="text-center text-2xl font-bold">{{ $candidate->candidate_name }}</h2>
-        <div>
-            <h2 class="text-center text-lg text-gray-700">{{ $candidate->city }}</h2>
-        </div>
-        <div class="flex bg-gray-300 rounded-lg p-3 justify-between gap-5">
-            <div>
-                Age: <span class="font-bold">{{ $candidate->age }} ans</span>
-            </div>
-            <div>
-                Taille: <span class="font-bold">{{ $candidate->size }}m</span>
-            </div>
-            <div>
-                Points: <span class="font-bold">{{ $candidate->score }} pts</span>
-            </div>
+        <h2 class="text-center text-4xl font-bold text-[#0f042d]">{{ $candidate->score }} votes</h2>
 
+        <div class="flex mt-6 bg-gray-300 max-sm:grid max-sm:grid-cols-2 max-sm:gap-x-12 rounded-lg p-3 justify-center gap-3">
+            <div>
+                <span class="font-normal">{{ $candidate->category->category_title }} #{{ $candidate->dossard }}</span>
+            </div>
+            <div class="max-sm:hidden">
+                <span>-</span>
+            </div>
+            <div>
+               <span class="font-normal">{{ $candidate->candidate_name }}</span>
+            </div>
+            <div class="max-sm:hidden">
+                <span>-</span>
+            </div>
+            <div>
+                 <span class="font-normal">{{ $candidate->age }} ans</span>
+            </div>
+            <div class="max-sm:hidden">
+                <span>-</span>
+            </div>
+            <div>
+                <span class="font-normal">{{ $candidate->size }}m</span>
+           </div>
+           <div class="max-sm:hidden">
+            <span>-</span>
+        </div>
+        <div>
+            <span class="font-normal">{{ $candidate->poids }}kg</span>
+       </div>
         </div>
         <div class="flex justify-center flex-col items-center mx-[27rem] mt-6">
             <p class="text-center">{{ $candidate->description }}</p>
