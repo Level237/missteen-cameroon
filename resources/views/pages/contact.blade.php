@@ -16,7 +16,7 @@ Contact
    <section class="h-10 bg-[#0f042d]">
 
     </section>
-    <section className='mx-40 pb-40 max-sm:mx-5'>
+    <section className='mx-40  pb-40 max-sm:mx-5'>
 
         @if(Session::get('success'))
         <div
@@ -56,7 +56,7 @@ Contact
       @endif
 
 
-        <form method="POST" action="{{ route('contact.send') }}" class="max-w-sm mx-auto mt-24 max-sm:mx-4">
+        <form method="POST" action="{{ route('contact.send') }}" class="max-w-sm mb-12 mx-auto mt-24 max-sm:mx-4">
             @csrf
             <div class="mb-5">
               <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Nom</label>
