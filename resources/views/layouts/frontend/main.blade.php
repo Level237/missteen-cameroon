@@ -108,5 +108,7 @@
                   document.getElementById("sub4").style.display= "none";
                 }
 </script>
+@viteReactRefresh
+@vite(['resources/js/header.jsx'])
 </body>
 </html>

@@ -17,7 +17,7 @@ class CategorySeeder extends Seeder
             'category_title'=>'Miss Teen'
         ]);
         Category::create([
-            'category_title'=>'Mister Teen'
+            'category_title'=>'Mini miss'
         ]);
         Category::create([
             'category_title'=>'Miss Teen Petite'

@@ -10,7 +10,8 @@ export default defineConfig({
             input: [
                 'resources/css/app.css',
                 'resources/js/app.jsx',
-
+                'resources/js/header.jsx',
+                'resources/js/momo.jsx',
             ],
             refresh: true,
         }),

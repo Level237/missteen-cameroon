@@ -93,7 +93,6 @@
     </div>
     </div>
 </nav>
-@viteReactRefresh
-@vite(['resources/js/header.jsx'])
+
 
 
