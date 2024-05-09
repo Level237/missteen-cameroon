@@ -16,7 +16,7 @@
     <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
       <ul class="flex flex-col p-4 gap-2 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0   dark:border-gray-700">
         <li id="menu3" onmouseover="mouseOver1()" class="relative">
-          <a href="{{ route('inscription') }}" class="block py-2 px-3  text-[#f1c802] rounded md:bg-transparent  md:p-0" aria-current="page">A Propos de nous</a>
+          <a  class="block cursor-pointer py-2 px-3  text-[#f1c802] rounded md:bg-transparent  md:p-0" aria-current="page">A Propos de nous</a>
           <div id="sub3" onmouseover="mouseOver1()" onmouseout="mouseOut1()"  class="absolute hidden   flex-col bg-white mt-5 pb-[4rem] ml-[-2rem] pt-4 pl-3 w-[12rem]   h-16">
             <div class="text-sm hover:text-[#f1c802] cursor-pointer mb-1">
                 Du Concours

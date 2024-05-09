@@ -67,9 +67,9 @@ Listes des candidates
             <div class="flex mx-[1rem] mt-5 justify-between items-center gap-4">
 
                 <div class="flex flex-col">
-                    <h2 class="text-xl font-bold">Magne Kamga Antoinette Hilary</h2>
+                    <h2 class="text-xl font-bold">Nono Beti Diane</h2>
                     <div>
-                        <p><span class="">Miss Teen Curve 2022</span></p>
+                        <p><span class="">Miss Teen Curve 2023</span></p>
                     </div>
 
 
