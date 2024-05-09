@@ -1,8 +1,6 @@
 @extends('layouts.backend.main')
 
-@section('title')
-Dashboard
-@endsection
+@section('title',"Edition candidate")
 
 @section('content')
 <main>
@@ -41,8 +39,9 @@ Dashboard
                 </h3>
               </div>
               <div class="p-7">
-                <form action="{{ route('candidate.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('candidate.update',$candidate->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
                   <div class="mb-5.5 flex flex-col gap-5.5 sm:flex-row">
                     <div class="w-full sm:w-1/2">
                       <label
@@ -81,6 +80,7 @@ Dashboard
                           type="text"
                           name="candidate_name"
                           id="fullName"
+                          value="{{ $candidate->candidate_name }}"
                           placeholder="Nom de la Candidate"
 
                         />
@@ -97,7 +97,7 @@ Dashboard
                         class="w-full rounded border border-stroke bg-gray px-4.5 py-3 font-medium text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
                         type="text"
                         name="username"
-
+                        value="{{ $candidate->username }}"
                         placeholder="nom utilisateur de la candidate"
                       />
                     </div>
@@ -112,7 +112,7 @@ Dashboard
                       class="w-full rounded border border-stroke bg-gray px-4.5 py-3 font-medium text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
                       type="text"
                       name="age"
-
+                        value="{{ $candidate->age }}"
                       placeholder="Age de la candidate"
                     />
                   </div>
@@ -127,7 +127,7 @@ Dashboard
                       class="w-full rounded border border-stroke bg-gray px-4.5 py-3 font-medium text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
                       type="text"
                       name="dossard"
-
+                        value="{{ $candidate->dossard }}"
                       placeholder="Entrer le dossard de la candidate"
                     />
                   </div>
@@ -141,7 +141,7 @@ Dashboard
                       class="w-full rounded border border-stroke bg-gray px-4.5 py-3 font-medium text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
                       type="text"
                       name="poids"
-
+                        value="{{ $candidate->poids }}"
                       placeholder="Entrer le poids de la candidate"
                     />
                   </div>
@@ -160,18 +160,37 @@ Dashboard
                         class="relative mb-5 z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
                         :class="isOptionSelected && 'text-black dark:text-white'"
                         @change="isOptionSelected = true"
+
                       >
 
-                      <option value="Littoral" class="text-body">Littoral</option>
-                      <option value="Nord" class="text-body">Nord</option>
-                      <option value="Centre" class="text-body">Centre</option>
-                      <option value="Ouest" class="text-body">Ouest</option>
-                      <option value="Nord-ouest" class="text-body">Nord-ouest</option>
-                      <option value="Sud" class="text-body">Sud</option>
-                      <option value="Sud-ouest" class="text-body">Sud-ouest</option>
-                      <option value="Est" class="text-body">Est</option>
-                      <option value="Adamaoua" class="text-body">Adamaoua</option>
-                      <option value="Extreme-Nord" class="text-body">Extreme-Nord</option>
+                      <option  value="Représentante du Littoral" class="text-body">Littoral</option>
+                      <option @if($candidate->city == "Nord")
+                        selected
+                      @endif value="Nord" class="text-body">Nord</option>
+                      <option @if($candidate->city == "Centre")
+                        selected
+                      @endif value="Centre" class="text-body">Centre</option>
+                      <option @if($candidate->city == "Ouest")
+                        selected
+                      @endif value="Ouest" class="text-body">Ouest</option>
+                      <option @if($candidate->city == "Nord-ouest")
+                        selected
+                      @endif value="Nord-ouest" class="text-body">Nord-ouest</option>
+                      <option @if($candidate->city == "Sud")
+                        selected
+                      @endif value="Sud" class="text-body">Sud</option>
+                      <option @if($candidate->city == "Sud-ouest")
+                        selected
+                      @endif value="Sud-ouest" class="text-body">Sud-ouest</option>
+                      <option @if($candidate->city == "Est")
+                        selected
+                      @endif value="Est" class="text-body">Est</option>
+                      <option @if($candidate->city == "Adamaoua")
+                        selected
+                      @endif value="Adamaoua" class="text-body">Adamaoua</option>
+                      <option @if($candidate->city == "Extreme-Nord")
+                        selected
+                      @endif value="Extreme-Nord" class="text-body">Extreme-Nord</option>
                     </select>
                       <span
                         class="absolute right-4 top-1/2 z-10 -translate-y-1/2"
@@ -208,13 +227,14 @@ Dashboard
                       name="size"
                       id="Username"
                       placeholder="Taille de la candidate"
+                      value="{{ $candidate->size }}"
                     />
                   </div>
                   <div>
                     <label
                       class="mb-3 block text-sm font-medium text-black dark:text-white"
                     >
-                      Selectionnez la categorie d'une candidate
+                      Selectionnez la categorie de la candidate
                     </label>
                     <div
                       x-data="{ isOptionSelected: false }"
@@ -227,7 +247,9 @@ Dashboard
                         @change="isOptionSelected = true"
                       >
                       @foreach ($categories as $category)
-                      <option value="{{ $category->id }}" class="text-body">{{ $category->category_title }}</option>
+                      <option @if($candidate->category_id == $category->id)
+                        selected
+                      @endif value="{{ $category->id }}" class="text-body">{{ $category->category_title }}</option>
                       @endforeach
 
 

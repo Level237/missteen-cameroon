@@ -55,7 +55,8 @@ Route::middleware('auth')->group(function () {
 
     Route::put('password', [PasswordController::class, 'update'])->name('password.update');
     Route::get('candidates',[CandidateController::class,'index'])->name('candidates.index');
-
+    Route::get('candidates/edit/{id}',[CandidateController::class,'edit'])->name('candidate.edit');
+    Route::put('candidates/update/{id}',[CandidateController::class,'update'])->name('candidate.update');
     Route::post('candidate/store',[CandidateController::class,'store'])->name('candidate.store');
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
