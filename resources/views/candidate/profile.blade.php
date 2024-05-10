@@ -5,14 +5,14 @@ Candidate numero {{ $candidate->dossard }}
 @endsection
 
 @section('meta_title')
-{{ $candidate->username }}:Candidate numéro ${{ $candidate->dossard }}
+{{ $candidate->username }}:Candidate numéro {{ $candidate->dossard }}
 @endsection
 
 @section('meta_description')
 {{ $candidate->candidate_name }}
 @endsection
 
-@section("meta_image",Storage::url($candidate->profile))
+@section("meta_image",asset({{ Storage::url($candidate->profile) }}))
 @section('content')
 
 

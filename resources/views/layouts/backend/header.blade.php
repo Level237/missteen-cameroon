@@ -156,7 +156,7 @@ class="sticky top-0 z-999 flex w-full bg-white drop-shadow-1 dark:bg-boxdark dar
         </span>
 
         <span class="h-12 w-12 rounded-full">
-          <img src="{{ asset('assets/img/backend/admin.jpeg') }}" alt="User" />
+          <img src="{{ asset('assets/img/backend/admin.png') }}" alt="User" />
         </span>
 
         <svg
