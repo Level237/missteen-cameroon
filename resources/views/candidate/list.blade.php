@@ -18,7 +18,7 @@ Candidate Régionales
 
     </section>
 
-    <section class="grid mb-36 mx-[6rem] mt-12 grid-cols-3 max-sm:mx-4 gap-3 max-sm:grid-cols-1">
+    <section class="grid mb-36 mx-[6rem] mt-12 grid-cols-3 max-sm:mx-4 gap-5 max-sm:grid-cols-1">
         @foreach ($candidates as $candidate)
         <div class="flex flex-col bg-gray-300 w-full rounded-2xl py-12 px-3   items-center">
             <div class="flex max-sm:flex-col max-sm:justify-center justify-between items-center gap-4">
@@ -43,7 +43,7 @@ Candidate Régionales
 
     </section>
     @if(count($candidates) == 0)
-    <div class="flex  mx-36 mb-10 mt-[-5rem]  ">
+    <div class="flex  mx-36 mb-10 mt-[-5rem] max-sm:mx-4 ">
         <div class="flex flex-col justify-center bg-gray-300 w-full rounded-2xl py-12 px-3   items-center">
             <h2 class="text-lg font-bold">Aucun candidat enregistré</h2>
         </div>
