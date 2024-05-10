@@ -4,6 +4,15 @@
 Candidate numero {{ $candidate->dossard }}
 @endsection
 
+@section('meta_title')
+{{ $candidate->username }}:Candidate numéro ${{ $candidate->dossard }}
+@endsection
+
+@section('meta_description')
+{{ $candidate->candidate_name }}
+@endsection
+
+@section("meta_image",Storage::url($candidate->profile))
 @section('content')
 
 
@@ -89,14 +98,19 @@ Candidate numero {{ $candidate->dossard }}
 
         </section>
        <section class="h-10 relative bg-[#0f042d] ">
-        <div class="absolute bottom-[-4rem] max-sm:right-[29%] right-[45%] ">
-            <div class="">
-                <img class="w-[10rem]   h-[10rem] rounded-full" src="{{ Storage::url($candidate->profile) }}" alt="{{ $candidate->candidate_name }}">
+        <div class="absolute  max-sm:hidden" style="right: 44%;bottom:-6rem">
+            <div class="w-full flex justify-center">
+                <img style="width: 195px;height:250px" class=" rounded-full" src="{{ Storage::url($candidate->profile) }}" alt="{{ $candidate->candidate_name }}">
+            </div>
+        </div>
+        <div class="absolute  lg:hidden md:hidden" style="right: 25%;bottom:-6rem">
+            <div class="w-full flex justify-center">
+                <img style="width: 195px;height:250px" class=" rounded-full" src="{{ Storage::url($candidate->profile) }}" alt="{{ $candidate->candidate_name }}">
             </div>
         </div>
         </section>
 
-    <section class="mt-[5rem] flex flex-col justify-center items-center">
+    <section class="flex flex-col justify-center items-center" style="margin-top: 7.5rem">
         <h2 class="text-center text-4xl font-bold text-[#0f042d]">{{ $candidate->score }} votes</h2>
 
         <div class="flex mt-6 bg-gray-300 max-sm:grid max-sm:grid-cols-2 max-sm:gap-x-12 rounded-lg p-3 justify-center gap-3">

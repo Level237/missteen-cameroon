@@ -3,13 +3,22 @@
 @section('title')
 Homepage
 @endsection
+@section('meta_title')
+MissTeen Cameroon
+@endsection
+
+@section('meta_description')
+Avez-vous toujours rêvé de devenir Miss Teen Cameroon?Vous êtes jeunes,dynamiques,alors vous êtes au bon endroit.
+@endsection
+
+@section("meta_image",asset('assets/img/miss.jpg'))
 
 @section('content')
 <section class="bg-center overflow-x-hidden  bg-no-repeat max-sm:h-screen    bg-[#1a1625] bg-blend-multiply">
     <div class="flex items-center max-sm:flex-col max-sm:ml-0 justify-center ml-[3rem] ">
         <div class="px-4 flex-1 mx-auto max-w-screen-xl py-24 lg:py-56">
             <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none max-sm:mt-12 text-white md:text-5xl lg:text-6xl">Devenez la miss Teen Cameroon de demain</h1>
-            <p class="mb-8 text-lg font-normal text-gray-300 lg:text-xl max-sm:mt-6 ">Vous souhaitez rejoindre la communauté des Miss Teens Cameroon,vous etes jeune,belle et élégante...alors vous etes au bon endroit.</p>
+            <p class="mb-8 text-lg font-normal text-gray-300 lg:text-xl max-sm:mt-6 ">Avez-vous toujours rêvé de devenir Miss Teen Cameroon?Vous êtes jeunes,dynamiques,alors vous êtes au bon endroit.</p>
             <div class="flex flex-col space-y-4 sm:flex-row  sm:space-y-0">
                 <a href="{{ route('inscription') }}" class="inline-flex justify-center items-center py-3 px-5 text-base font-medium  text-black rounded-lg bg-[#f1c802] hover:bg-[#ffd609] focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
                     Inscription

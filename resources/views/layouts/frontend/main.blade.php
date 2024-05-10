@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <Meta name=" robots " content="index, follow" />
+    <meta name="twitter:card" content="@yield('meta_title')" />
+    <meta name="keywords" content="missteen, teen, cameroon, MISS TEEN CAMEROON, MISS TEEN, MISS TEEN CAMEROON, MISS TEEN CAMEROON 2023, MISS TEEN 2023,mode,styliste,modeliste,model,modele,missteen cameroon">
+    <meta name="twitter:site" content="missteencameroon.org" />
+    <meta name="twitter:title" content="@yield('meta_title')" />
+    <meta name="twitter:description" content="@yield('meta_description')" />
+    <meta name="twitter:image" content="@yield('meta_image')" />
     @vite('resources/css/app.css')
     <title>@yield("title") </title>
 </head>

@@ -4,6 +4,15 @@
 Candidate Régionales
 @endsection
 
+@section('meta_title')
+Listes de Candidates
+@endsection
+
+@section('meta_description')
+Listes des Candidates Régionales
+@endsection
+
+@section("meta_image",asset('assets/img/logo.png'))
 @section('content')
 
 <section class="relative  h-[60vh] bg-left bg-cover bg-[url('asset('bg.png')')]" style="background-image: url('assets/img/bg.png');background-position:center">
@@ -22,7 +31,7 @@ Candidate Régionales
         @foreach ($candidates as $candidate)
         <div class="flex flex-col bg-gray-300 w-full rounded-2xl py-12 px-3   items-center">
             <div class="flex max-sm:flex-col max-sm:justify-center justify-between items-center gap-4">
-                <img class="w-[8rem] h-[8rem] rounded-full" src="{{ Storage::url($candidate->profile) }}" alt="">
+                <img class="w-[8.5rem] h-[8rem] rounded-full" src="{{ Storage::url($candidate->profile) }}" alt="">
                 <div class="flex flex-col max-sm:justify-center max-sm:items-center">
                     <h2 class="text-lg font-bold">{{ $candidate->category->category_title }}</h2>
                     <div>
