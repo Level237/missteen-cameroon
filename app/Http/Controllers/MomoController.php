@@ -9,9 +9,9 @@ use Illuminate\Http\Request;
 
 class MomoController extends Controller
 {
-    public function initPay(){
+    public function initPay($price){
         $token=(new InitTokenService())->initToken("3h31rsuu2sg6ggsn6s7u8s6cgs","10jcqne5mgqfhvj9duvppbknr99lokjmfq8bisot89tr5iu6o2m1");
-        $messageId=(new GetPaymentService($token))->pay($token);
+        $messageId=(new GetPaymentService())->pay($token,$price);
         if($messageId==null || $token==null){
             return response()->json(['status',404]);
         }else{

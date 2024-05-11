@@ -85,7 +85,7 @@ export default function Momo(){
         }
 
         setVisibleBtn(false)
-        const subscription = fetchData(`${href}/init/pay/momo`).subscribe({
+        const subscription = fetchData(`${href}/init/pay/momo/${price}`).subscribe({
             next: result => {
                 if(result.status===200){
                     console.log(result.token);
@@ -93,7 +93,6 @@ export default function Momo(){
                     setTokenAccess(result.token)
                     setMessageId(result.messageId)
                     setError(null)
-
                                 setVisibleCard(false)
                                 setText("En cours de traitement ne fermez pas la page s'il vous plait!...")
                 }else if(result.status===404){
