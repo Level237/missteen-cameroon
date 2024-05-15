@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('candidate_name')->unique();
             $table->string('username')->unique();
-            $table->string('dossard')->unique();
+            $table->string('dossard');
             $table->string('poids');
             $table->string('age');
             $table->string('city');
