@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield("title")</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/img/logo.png') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/logo.png') }}">
     <link href="{{ asset('assets/css/backend/style.css') }}" rel="stylesheet"></head>
 </head>
 <body
