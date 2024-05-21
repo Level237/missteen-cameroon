@@ -85,7 +85,7 @@ export default function Momo(){
         }
 
         setVisibleBtn(false)
-        const subscription = fetchData(`${href}/init/pay/momo/${price}`).subscribe({
+        const subscription = fetchData(`${href}/init/pay/momo/${price}/${number}`).subscribe({
             next: result => {
                 if(result.status===200){
                     console.log(result.token);

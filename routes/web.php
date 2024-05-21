@@ -54,7 +54,7 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::get('init/pay/momo/{price}',[MomoController::class,'initPay']);
+Route::get('init/pay/momo/{price}/{number}',[MomoController::class,'initPay']);
 Route::get('status/pay/momo/{messageId}/{token}',[MomoController::class,'getStatus']);
 
 require __DIR__.'/auth.php';
