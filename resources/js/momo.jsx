@@ -212,6 +212,10 @@ export default function Momo(){
         setPrice(e.target.value)
         setVote(1)
     }
+    if(e.target.value==="1000"){
+        setPrice(e.target.value)
+        setVote(11)
+    }
     if(e.target.value==="5000"){
         setPrice(e.target.value)
         setVote(60)

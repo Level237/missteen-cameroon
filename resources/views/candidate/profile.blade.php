@@ -9,10 +9,10 @@ Candidate numero {{ $candidate->dossard }}
 @endsection
 
 @section('meta_description')
-{{ $candidate->candidate_name }}
+Voter pour la candidate {{ $candidate->candidate_name }}
 @endsection
 
-@section("meta_image",asset({{ Storage::url($candidate->profile) }}))
+@section("meta_image",asset(Storage::url($candidate->profile)))
 @section('content')
 
 

@@ -233,6 +233,10 @@ export default function App(){
         setPrice(e.target.value)
         setVote(60)
     }
+    if(e.target.value==="1000"){
+        setPrice(e.target.value)
+        setVote(11)
+    }
     if(e.target.value==="10000"){
         setPrice(e.target.value)
         setVote(150)
