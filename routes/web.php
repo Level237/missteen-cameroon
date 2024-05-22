@@ -34,17 +34,17 @@ Route::post('send',[ContactController::class,"sendContact"])->name('contact.send
 Route::get('/contact',[ContactController::class,'index'])->name('contact.index');
 Route::get('/candidate/create',[CandidateController::class,'create'])->name('candidate.create')->middleware('auth');
 Route::get('/list/candidates',[PageController::class,'candidates'])->name('candidate.list');
-Route::get('/payment/successfull',[VoteController::class,'success']);
-Route::get('/payment/successfull/momo',[VoteController::class,'successMomo']);
+Route::get('/payment/successfull/{candidateId}/{vote}/{price}/{type}',[VoteController::class,'success']);
+Route::get('/payment/successfull/momo/{candidateId}/{vote}/{price}/{type}',[VoteController::class,'successMomo']);
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('redirect/profile',[PageController::class,'redirect'])->name('redirect.profile');
 Route::get('jeVotePour/{slug}',[PageController::class,'vote'])->name('candidate.vote');
-Route::get('access',[VoteController::class,'payment']);
+Route::get('access/{price}/{slug}/{vote}/{candidateId}/{type}',[VoteController::class,'payment']);
 Route::get('validation/{token}/{payToken}/{number}/{amount}',[VoteController::class,'paymentValidation']);
-Route::get('/status/{token}/{payToken}/{id}',[VoteController::class,'getPaymentStatus']);
+Route::get('/status/{token}/{payToken}/{price}/{slug}/{vote}/{candidateId}/{type}',[VoteController::class,'getPaymentStatus']);
 Route::get('/candidate/{slug}',[PageController::class,'profile'])->name('candidate.profile');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -54,7 +54,7 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::get('init/pay/momo/{price}/{number}',[MomoController::class,'initPay']);
+Route::get('init/pay/momo/{price}/{number}/{candidateId}/{vote}',[MomoController::class,'initPay']);
 Route::get('status/pay/momo/{messageId}/{token}',[MomoController::class,'getStatus']);
 
 require __DIR__.'/auth.php';

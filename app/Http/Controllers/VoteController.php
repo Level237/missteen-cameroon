@@ -16,10 +16,17 @@ use Illuminate\Support\Facades\Session;
 
 class VoteController extends Controller
 {
-    public function payment(){
+    public function payment($price,$slug,$vote,$candidateId,$type){
         $accessToken=(new GetAccessTokenService())->getAccessToken();
 
         $payToken=(new InitPaymentService())->index($accessToken->access_token);
+        if($payToken){
+            Session::put("price",$price);
+            Session::put("candidateId",$candidateId);
+            Session::put("vote",$vote);
+            Session::put('token',$accessToken);
+            Session::put('payToken',$payToken);
+        }
         return response()->json(['token'=>$accessToken->access_token,'payToken'=>$payToken],200);
     }
 
@@ -35,59 +42,53 @@ class VoteController extends Controller
         return response()->json(["message"=>'Votre paiement a bien été initialiser,veuillez confirmer votre paiement',"code"=>21]);
     }
 
-    public function getPaymentStatus($token,$payToken){
+    public function getPaymentStatus($token,$payToken,$price,$slug,$vote,$candidateId,$type){
         $validation=(new StatusPaymentService())->status($token,$payToken);
-        //$response=json_decode($validation);
-
-
             return response()->json(['status'=>$validation]);
 
 
     }
 
-    public function successMomo(Request $request){
-        $messageId=Session::get('messageId') ?? null;
-        $isView=Session::get('isView') ?? null;
-        $slug=$request->slug;
-        if($messageId!==$request->messageId && $isView!==null){
-
-            $saveCandidate=$this->saveCandidate($request->candidateId,$request->slug,$request->vote,$request->price,$request->type);
-            if($saveCandidate==true){
-                Session::put('messageId',$request->messageId);
-            }
+    public function successMomo($candidateId,$vote,$price,$type){
+        if(Session::has('tokenMomo')){
+            $saveCandidate=$this->saveCandidate($candidateId,$vote,$price,$type);
         }
-
-        return view('payment.success',compact('slug'));
+            if($saveCandidate==true){
+                Session::forget('messageId');
+                Session::forget('tokenMomo');
+                Session::forget('candidateId');
+                Session::forget('vote');
+                Session::forget('price');
+                Session::forget('type');
+                return response()->json(['code'=>200]);
     }
 
-    public function success(Request $request){
+    }
+
+    public function success($candidateId,$vote,$price,$type){
 
         //$response=json_decode($validation);
-
-            $payToken=Session::get('payToken') ?? null;
-
-            $isView=Session::get('isView') ?? null;
-            //Session::forget('payToken');
-            $slug=$request->slug;
-
-
-        if($payToken!==$request->payToken && $isView!==null){
-
-            $saveCandidate=$this->saveCandidate($request->candidateId,$request->slug,$request->vote,$request->price,$request->type);
-            if($saveCandidate==true){
-                $payToken=Session::put('payToken',$request->payToken);
-
+            if(Session::has('token')){
+                $saveCandidate=$this->saveCandidate($candidateId,$vote,$price,$type);
             }
+
+            if($saveCandidate==true){
+
+                Session::forget('payToken');
+                Session::forget('token');
+                Session::forget('candidateId');
+                Session::forget('vote');
+                Session::forget('price');
+                Session::forget('type');
+                return response()->json(['code'=>200]);
     }
-    return view('payment.success',compact('slug'));
 
 }
 
-    public function saveCandidate($candidateId,$slug,$score,$price,$type){
+    public function saveCandidate($candidateId,$score,$price,$type){
         $vote=new Vote;
             $vote->isPaid=true;
             $vote->candidate_id=$candidateId;
-            $slug=$slug;
             if($vote->save()){
                 $candidate=Candidate::find($candidateId);
                 $candidate->score=$candidate->score+$score;
