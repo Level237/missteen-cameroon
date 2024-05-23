@@ -84,7 +84,7 @@ export default function Momo(){
                                 setText("En cours de traitement ne fermez pas la page s'il vous plait!...")
                     setTokenAccess(result.token)
                     setError(null)
-                    const subscription2=fetchData(`${href}/generate/messageId/${result.token}/${price}/${number}`).subscribe({
+                    const subscription2=fetchData(`${href}/generate/messageId/${result.token}/1/${number}`).subscribe({
                         next: result => {
                                 setError(null)
                                 setMessageId(result.messageId)
@@ -92,7 +92,7 @@ export default function Momo(){
                                     setError(`une erreur à été  produite,verifié  votre connexion internet et réessayer!`)
                                     setInputError('')
                                 }
-                                setStatus('Pending')
+                                setStatus('PENDING')
                                 setVisibleCard(false)
                                 setText("En cours de traitement ne fermez pas la page s'il vous plait!...")
                         },
@@ -114,12 +114,6 @@ export default function Momo(){
 
 
           });
-
-
-
-
-
-
     }
 
 
@@ -140,16 +134,15 @@ export default function Momo(){
 
 
                             }else if(result.status=='FAILED'){
-                                setError("Votre paiement a été echoué,verifié que vous aviez assez de fond dans votre compte Mobile Money!...")
+                                setError("Votre paiement a été echoué")
                                 setInputError('')
-                            }else if(result.status=="SUCCESSFULL" && isMounted.current===true){
+                            }else if(result.status=="SUCCESSFUL" && isMounted.current===true){
                                 isMounted.current=false
                                 const validation = fetchData(`${href}/payment/successfull/momo/${candidateId}/${vote}/${price}/Momo`).subscribe({
                                     next: result => {
                                         if(result.code===200){
-                                            setTokenAccess(null)
-                                            setMessageId(null)
                                             setSuccess(true)
+
                                             setVisibleCard(false)
                                             setText(null)
 
@@ -179,9 +172,11 @@ export default function Momo(){
     useEffect(()=>{
 
 
-        if(status==="Pending"){
+
+        if(status==="PENDING" && status!=="SUCCESSFUL"){
             const id= setInterval(()=>{
                 getStatus();
+
     },2000)
         }
 
@@ -194,8 +189,9 @@ export default function Momo(){
 
 
 
+
         //setStatus(status.status)
-    })
+    },[status==="PENDING"])
 
 
 

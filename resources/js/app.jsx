@@ -186,7 +186,7 @@ export default function App(){
 
     useEffect(()=>{
 
-                if(status==="Pending" && status!=="SUCCESSFULL"){
+                if(status==="PENDING" && status!=="SUCCESSFULL"){
                     const id= setInterval(()=>{
                         getStatus();
 

@@ -24,7 +24,12 @@ class MomoController extends Controller
     public function getPay($token,$price,$number){
         $messageId=(new GetPaymentService())->pay($token,$price,$number);
         Session::put('messageId',$messageId);
-        return response()->json(['messageId'=>$messageId]);
+        if($messageId==null){
+            return response()->json(['messageId'=>null],400);
+        }else{
+            return response()->json(['messageId'=>$messageId]);
+        }
+
     }
 
     public function getStatus($messageId,$token){

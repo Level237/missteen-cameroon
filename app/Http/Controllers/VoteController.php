@@ -50,9 +50,11 @@ class VoteController extends Controller
     }
 
     public function successMomo($candidateId,$vote,$price,$type){
-        if(Session::has('tokenMomo')){
+
+        if(Session::has('tokenMomo') ){
             $saveCandidate=$this->saveCandidate($candidateId,$vote,$price,$type);
         }
+
             if($saveCandidate==true){
                 Session::forget('messageId');
                 Session::forget('tokenMomo');
@@ -68,7 +70,7 @@ class VoteController extends Controller
     public function success($candidateId,$vote,$price,$type){
 
         //$response=json_decode($validation);
-            if(Session::has('token')){
+            if(Session::has('token') ){
                 $saveCandidate=$this->saveCandidate($candidateId,$vote,$price,$type);
             }
 
