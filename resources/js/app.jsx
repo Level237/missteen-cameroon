@@ -74,21 +74,16 @@ export default function App(){
 
         if(number==null){
             setInputError("votre numéro de téléphone ne peut pas etre vide")
-            console.log(inputError);
-            console.log("le");
             return;
         }
         if(price==null){
             setInputError("votre numéro de téléphone ne peut pas etre vide")
-            console.log(inputError);
-            console.log("le");
             return;
         }
 
         setVisibleBtn(false)
         const subscription = fetchData(`${href}/access/${price}/${slug}/${vote}/${candidateId}/Om`).subscribe({
             next: result => {
-                console.log(result.token);
 
                 setTokenAccess(result.token)
                 setPayToken(result.payToken)
@@ -105,20 +100,16 @@ export default function App(){
                         else if(result.code===21){
                             setError(null)
                             setVisibleCard(false)
-                            console.log(result);
                             setText("En cours de traitement ne fermez pas la page s'il vous plait!...")
+                            setStatus('Pending')
 
                         }
-
-
-
                     },
                     error: err => {
                         console.error(err);
                         setError(`une erreur à été  produite,verifié  votre connexion internet et réessayer!`)
                        setInputError('')
                     },
-                    complete: () => console.log('Fetch terminé')
                 })
             },
             error: err => {
@@ -126,7 +117,6 @@ export default function App(){
                     setError(`une erreur à été  produite,verifié que  votre connexion internet est stable et réessayer!`)
                    setInputError('')
             },
-            complete: () => console.log('Fetch terminé')
 
 
           });
@@ -158,17 +148,17 @@ export default function App(){
                             }else if(result.status=='FAILED'){
                                 setError("Votre paiement a été echoué,verifié que vous aviez assez de fond dans votre compte Orange Money!...")
                                 setInputError('')
-                            }else if(result.status=="SUCCESSFULL"){
-
+                            }else if(result.status=="SUCCESSFULL" && isMounted.current===true){
+                                isMounted.current=false
+                                setStatus("SUCCESSFULL")
                                 const validation = fetchData(`${href}/payment/successfull/${candidateId}/${vote}/${price}/om`).subscribe({
                                     next: result => {
                                         if(result.code===200){
+                                            setTokenAccess(null)
+                                            setPayToken(null)
                                             setSuccess(true)
                                             setVisibleCard(false)
                                             setText(null)
-                                            setTokenAccess(null)
-                                            setPayToken(null)
-
                                         }
                                     },
                                 })
@@ -186,7 +176,6 @@ export default function App(){
             },
             error: err => {
                 console.error(err);
-                console.log("level");
 
             },
             complete: () => console.log('Fetch terminé')
@@ -197,11 +186,13 @@ export default function App(){
 
     useEffect(()=>{
 
+                if(status==="Pending" && status!=="SUCCESSFULL"){
+                    const id= setInterval(()=>{
+                        getStatus();
 
-               const id= setInterval(()=>{
-                    getStatus();
+            },2000)
+                }
 
-        },500)
 
 
 

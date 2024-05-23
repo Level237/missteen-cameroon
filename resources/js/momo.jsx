@@ -19,7 +19,7 @@ export default function Momo(){
     const idCandidate=document.querySelector(".candidateId").innerHTML
     const slug=document.querySelector(".slug").innerHTML
     const [candidateId]=useState(idCandidate)
-    const [status,setStatus]=useState("SUCCESSFULL")
+    const [status,setStatus]=useState("")
     const [text,setText]=useState("")
     const [viewError,setViewError]=useState("")
     const [price,setPrice]=useState("100")
@@ -38,7 +38,7 @@ export default function Momo(){
             }),
             catchError(err => {
                 // Gestion des erreurs de réseau ou autres erreurs capturées
-                console.error(err);
+
                 //setError(`une erreur à été  produite,verifié  votre connexion internet et réessayer!`)
               })
         )
@@ -74,33 +74,34 @@ export default function Momo(){
 
         if(number==null){
             setInputError("votre numéro de téléphone ne peut pas etre vide")
-            console.log(inputError);
-            console.log("le");
-            return;
-        }
-        if(price==null){
-            setInputError("votre numéro de téléphone ne peut pas etre vide")
-            console.log(inputError);
-            console.log("le");
             return;
         }
 
         setVisibleBtn(false)
         const subscription = fetchData(`${href}/init/pay/momo/1/${number}/${candidateId}/${vote}`).subscribe({
             next: result => {
-                if(result.status===200){
-                    console.log(result.token);
-                    console.log(result.messageId);
+                setVisibleCard(false)
+                                setText("En cours de traitement ne fermez pas la page s'il vous plait!...")
                     setTokenAccess(result.token)
-                    setMessageId(result.messageId)
                     setError(null)
+                    const subscription2=fetchData(`${href}/generate/messageId/${result.token}/${price}/${number}`).subscribe({
+                        next: result => {
+                                setError(null)
+                                setMessageId(result.messageId)
+                                if(result.messageId==null){
+                                    setError(`une erreur à été  produite,verifié  votre connexion internet et réessayer!`)
+                                    setInputError('')
+                                }
+                                setStatus('Pending')
                                 setVisibleCard(false)
                                 setText("En cours de traitement ne fermez pas la page s'il vous plait!...")
-                }else if(result.status===404){
-                    setVisibleCard(false)
-                    setError(`une erreur à été  produite,verifié  votre connexion internet et réessayer!`)
-                    setInputError('')
-                }
+                        },
+                        error: err => {
+                            setError(`une erreur à été  produite,verifié  votre connexion internet et réessayer!`)
+                           setInputError('')
+                        },
+                        complete: () => console.log('Fetch terminé')
+                    })
 
 
             },
@@ -109,7 +110,7 @@ export default function Momo(){
                     setError(`une erreur à été  produite,verifié que  votre connexion internet est stable et réessayer!`)
                    setInputError('')
             },
-            complete: () => console.log('Fetch terminé')
+
 
 
           });
@@ -141,15 +142,17 @@ export default function Momo(){
                             }else if(result.status=='FAILED'){
                                 setError("Votre paiement a été echoué,verifié que vous aviez assez de fond dans votre compte Mobile Money!...")
                                 setInputError('')
-                            }else if(result.status=="SUCCESSFULL"){
+                            }else if(result.status=="SUCCESSFULL" && isMounted.current===true){
+                                isMounted.current=false
                                 const validation = fetchData(`${href}/payment/successfull/momo/${candidateId}/${vote}/${price}/Momo`).subscribe({
                                     next: result => {
                                         if(result.code===200){
+                                            setTokenAccess(null)
+                                            setMessageId(null)
                                             setSuccess(true)
                                             setVisibleCard(false)
                                             setText(null)
-                                            setTokenAccess(null)
-                                            setPayToken(null)
+
                                         }
                                     },
                                 })
@@ -164,11 +167,10 @@ export default function Momo(){
 
             },
             error: err => {
-                console.error(err);
-                console.log("level");
+
 
             },
-            complete: () => console.log('Fetch terminé')
+
         })
     }
 
@@ -177,10 +179,11 @@ export default function Momo(){
     useEffect(()=>{
 
 
-               const id= setInterval(()=>{
-                    getStatus();
-
-        },50)
+        if(status==="Pending"){
+            const id= setInterval(()=>{
+                getStatus();
+    },2000)
+        }
 
 
 

@@ -40,6 +40,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('generate/messageId/{token}/{price}/{number}',[MomoController::class,'getPay']);
 Route::get('redirect/profile',[PageController::class,'redirect'])->name('redirect.profile');
 Route::get('jeVotePour/{slug}',[PageController::class,'vote'])->name('candidate.vote');
 Route::get('access/{price}/{slug}/{vote}/{candidateId}/{type}',[VoteController::class,'payment']);

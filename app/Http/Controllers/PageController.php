@@ -57,20 +57,20 @@ class PageController extends Controller
                 if($response==="SUCCESSFULL"){
                     $saveCandidate=$this->saveCandidate(Session::get('candidateId'),Session::get('vote'),Session::get('price'),"Momo");
                     if($saveCandidate==true){
-                        Session::forget('payToken');
-                        Session::forget('token');
-                        Session::forget('candidateId');
-                        Session::forget('vote');
-                        Session::forget('price');
-                        Session::forget('type');
+                        Session::forget('messageId');
+                Session::forget('tokenMomo');
+                Session::forget('candidateId');
+                Session::forget('vote');
+                Session::forget('price');
+                Session::forget('type');
                     }
                 }
-                Session::forget('payToken');
-                        Session::forget('token');
-                        Session::forget('candidateId');
-                        Session::forget('vote');
-                        Session::forget('price');
-                        Session::forget('type');
+                Session::forget('messageId');
+                Session::forget('tokenMomo');
+                Session::forget('candidateId');
+                Session::forget('vote');
+                Session::forget('price');
+                Session::forget('type');
             }
     }
         return view('candidate.profile',compact('candidate'));
@@ -86,6 +86,16 @@ class PageController extends Controller
             Session::forget("candidateId");
             Session::forget("vote");
             Session::forget("type");
+        }
+
+        if(Session::has('tokenMomo')){
+            Session::forget('messageId');
+            Session::forget('tokenMomo');
+            Session::forget('candidateId');
+            Session::forget("slug");
+            Session::forget('vote');
+            Session::forget('price');
+            Session::forget('type');
         }
         $candidate=Candidate::where('candidate_slug',$slug)->firstOrFail();
         return view('candidate.vote',compact('candidate','type'));
