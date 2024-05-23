@@ -54,7 +54,10 @@ Route::middleware('auth')->group(function () {
     Route::get('contact/list',[ContactController::class,'list'])->name('contact.list');
 });
 
-
+Route::get('comming-soon',function(){
+    return view('pages.maintenance');
+});
+Route::get('list/votes',[PageController::class,'listVote'])->name('list.vote');
 Route::get('init/pay/momo/{price}/{number}/{candidateId}/{vote}',[MomoController::class,'initPay']);
 Route::get('status/pay/momo/{messageId}/{token}',[MomoController::class,'getStatus']);
 

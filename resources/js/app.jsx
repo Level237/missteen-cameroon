@@ -91,7 +91,7 @@ export default function App(){
 
                             setVisibleCard(false)
                             setText("En cours de traitement ne fermez pas la page s'il vous plait!...")
-                const subscription2=fetchData(`${href}/validation/${result.token}/${result.payToken}/${number}/1`).subscribe({
+                const subscription2=fetchData(`${href}/validation/${result.token}/${result.payToken}/${number}/${price}`).subscribe({
                     next: result => {
                         if(result.code===20){
                             setError(t.message)
@@ -101,7 +101,7 @@ export default function App(){
                             setError(null)
                             setVisibleCard(false)
                             setText("En cours de traitement ne fermez pas la page s'il vous plait!...")
-                            setStatus('Pending')
+                            setStatus('PENDING')
 
                         }
                     },

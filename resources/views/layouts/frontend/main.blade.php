@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/logo2.jpg') }}">
     <Meta name=" robots " content="index, follow" />
     <meta name="twitter:card" content="@yield('meta_title')" />
     <meta name="keywords" content="missteen, teen, cameroon, MISS TEEN CAMEROON, MISS TEEN, MISS TEEN CAMEROON, MISS TEEN CAMEROON 2023, MISS TEEN 2023,mode,styliste,modeliste,model,modele,missteen cameroon">

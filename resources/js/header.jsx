@@ -28,8 +28,8 @@ export default function Header(){
                   A propos de nous
                     </a>
                     <div className='text-sm mt-1 ' style={{ marginLeft:"1rem" }}>
-                        <h2 className='mb-2'>Du Concours</h2>
-                        <h2 className='mb-2'>Directeur Régionaux</h2>
+                        <h2 className='mb-2'><a href='/comming-soon'>Du Concours</a></h2>
+                        <h2 className='mb-2'><a href='/comming-soon'>Directeur Régionaux</a></h2>
 
                     </div>
                 </div>
@@ -41,9 +41,9 @@ export default function Header(){
                         <h2 className='mb-2'>Mini miss Cameroon</h2>
                         <h2 className='mb-2'><a href='/miss/elues/miss-teen-curve'>Miss Teen Curve Cameroon</a></h2>
                         <h2 className='mb-2'><a href='/miss/elues/miss-teen-cameroon'>Miss Teen Cameroon</a></h2>
-                        <h2 className='mb-2'>Miss Teen Petite Cameroon</h2>
-                        <h2 className='mb-2'>Miss Pre-Teen Cameroon</h2>
-                        <h2 className='mb-2'>MissTer Teen Cameroon</h2>
+                        <h2 className='mb-2'><a href='/comming-soon'>Miss Teen Petite Cameroon</a></h2>
+                        <h2 className='mb-2'><a href='/comming-soon'>Miss Pre-Teen Cameroon</a></h2>
+                        <h2 className='mb-2'><a href='/comming-soon'>MissTer Teen Cameroon</a></h2>
                     </div>
                 </div>
                 <div className='mt-2' >
@@ -52,8 +52,8 @@ export default function Header(){
                     </h2>
                     <div className='text-sm mt-1 ' style={{ marginLeft:"1rem" }}>
                         <h2 className='mb-2'><a href='/inscription'>Candidats</a></h2>
-                        <h2 className='mb-2'>Sponsors</h2>
-                        <h2 className='mb-2'>Directeur Régional</h2>
+                        <h2 className='mb-2'><a href='/comming-soon'>Sponsors</a></h2>
+                        <h2 className='mb-2'><a href='/comming-soon'>Directeur Régional</a></h2>
                     </div>
                 </div>
                 <div className='mt-5' >
@@ -61,7 +61,7 @@ export default function Header(){
                 Voter
                     </h2>
                     <div className='text-sm mt-1 ' style={{ marginLeft:"1rem" }}>
-                        <h2 className='mb-2'>Nationale</h2>
+                        <h2 className='mb-2'><a href='/comming-soon'>Nationale</a></h2>
                         <h2 className='mb-2'>
                             <a href='/list/candidates'>Régionale</a>
                             </h2>
@@ -75,7 +75,9 @@ export default function Header(){
                 </div>
                 <div className='mt-3 mb-5' >
                   <h2>
+                  <a href='/comming-soon'>
               Acheter un Ticket
+                    </a>
                     </h2>
                 </div>
               </div>

@@ -78,13 +78,13 @@ export default function Momo(){
         }
 
         setVisibleBtn(false)
-        const subscription = fetchData(`${href}/init/pay/momo/1/${number}/${candidateId}/${vote}`).subscribe({
+        const subscription = fetchData(`${href}/init/pay/momo/${price}/${number}/${candidateId}/${vote}`).subscribe({
             next: result => {
                 setVisibleCard(false)
                                 setText("En cours de traitement ne fermez pas la page s'il vous plait!...")
                     setTokenAccess(result.token)
                     setError(null)
-                    const subscription2=fetchData(`${href}/generate/messageId/${result.token}/1/${number}`).subscribe({
+                    const subscription2=fetchData(`${href}/generate/messageId/${result.token}/${price}/${number}`).subscribe({
                         next: result => {
                                 setError(null)
                                 setMessageId(result.messageId)

@@ -124,4 +124,9 @@ class PageController extends Controller
                 return true;
             }
     }
+
+    public function listVote(){
+        $candidates=Candidate::orderBy('score','desc')->get();
+        return view('pages.listVote',compact('candidates'));
+    }
 }
