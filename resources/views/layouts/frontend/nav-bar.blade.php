@@ -1,4 +1,4 @@
-<nav class="bg-[#fff] backdrop-blur fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
+<nav  class="bg-[#fff] backdrop-blur sticky w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
         <a href="/" class="">
             <img src="{{ asset('assets/img/logo.png') }}" class="h-[3.9rem]" alt="Miss Teen Logo">
