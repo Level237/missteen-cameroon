@@ -20,6 +20,7 @@ return new class extends Migration
             ->restrictOnUpdate();
             $table->string('amount');
             $table->string('payment_type');
+            $table->string('txnid')->nullable();
             $table->timestamps();
         });
     }

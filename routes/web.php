@@ -44,7 +44,7 @@ Route::get('generate/messageId/{token}/{price}/{number}',[MomoController::class,
 Route::get('redirect/profile',[PageController::class,'redirect'])->name('redirect.profile');
 Route::get('jeVotePour/{slug}',[PageController::class,'vote'])->name('candidate.vote');
 Route::get('access/{price}/{slug}/{vote}/{candidateId}/{type}',[VoteController::class,'payment']);
-Route::get('validation/{token}/{payToken}/{number}/{amount}',[VoteController::class,'paymentValidation']);
+Route::get('validation/{token}/{payToken}/{number}/{amount}/{candidateId}',[VoteController::class,'paymentValidation']);
 Route::get('/status/{token}/{payToken}/{price}/{slug}/{vote}/{candidateId}/{type}',[VoteController::class,'getPaymentStatus']);
 Route::get('/candidate/{slug}',[PageController::class,'profile'])->name('candidate.profile');
 Route::middleware('auth')->group(function () {
