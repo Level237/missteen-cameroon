@@ -86,7 +86,7 @@ public function notifyOm(){
         $saveCandidate=$this->saveCandidate($vote->candidate_id,$payment->score,$payment->amount,"Om");
         return response()->json(['message'=>"accepted"]);
     }
-
+    return response()->json(['message'=>"rejected"]);
 }
 public function notifyMomo(){
     $data=file_get_contents('php://input');
@@ -94,7 +94,7 @@ public function notifyMomo(){
 
     //je recupere mon txnid de la base de donnée et je le compare avec le present txnid de l'om
 
-   return $data;
+   return response()->json(['data'=>"data"]);
 
 }
 
