@@ -10,7 +10,7 @@ use App\Services\Om\GetAccessTokenService;
 use App\Services\Om\InitPaymentService;
 use App\Services\Om\StatusPaymentService;
 use App\Services\Om\ValidationPayment;
-
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 
@@ -24,7 +24,7 @@ class VoteController extends Controller
         return response()->json(['token'=>$accessToken->access_token,'payToken'=>$payToken],200);
     }
 
-    public function paymentValidation($token,$payToken,$number,$amount,$candidateId){
+    public function paymentValidation($token,$payToken,$number,$amount,$candidateId,$score){
         $validation=(new ValidationPayment())->paymentValidation($token,$payToken,$number,$amount);
         $response=json_decode($validation);
         $message=$response->message ?? null;
@@ -41,7 +41,9 @@ class VoteController extends Controller
         $payment->vote_id=$vote->id;
         $payment->amount=$amount;
         $payment->payment_type="Om";
+        $payment->expire_at=Carbon::now()->addMinutes(10);
         $payment->txnid=$txnid;
+        $payment->score=$score;
         $payment->save();
         return response()->json(["message"=>'Votre paiement a bien été initialiser,veuillez confirmer votre paiement',"code"=>21]);
     }
@@ -49,68 +51,61 @@ class VoteController extends Controller
     public function getPaymentStatus($token,$payToken,$price,$slug,$vote,$candidateId,$type){
         $validation=(new StatusPaymentService())->status($token,$payToken);
             return response()->json(['status'=>$validation]);
-
-
     }
 
     public function successMomo($candidateId,$vote,$price,$type){
 
-        if(Session::has('tokenMomo') ){
-            $saveCandidate=$this->saveCandidate($candidateId,$vote,$price,$type);
-        }
 
-            if($saveCandidate==true){
-                Session::forget('messageId');
-                Session::forget('tokenMomo');
-                Session::forget('candidateId');
-                Session::forget('vote');
-                Session::forget('price');
-                Session::forget('type');
                 return response()->json(['code'=>200]);
-    }
+
 
     }
 
     public function success($candidateId,$vote,$price,$type){
 
         //$response=json_decode($validation);
-            if(Session::has('token') ){
-                $saveCandidate=$this->saveCandidate($candidateId,$vote,$price,$type);
-            }
 
-            if($saveCandidate==true){
-
-                Session::forget('payToken');
-                Session::forget('token');
-                Session::forget('candidateId');
-                Session::forget('vote');
-                Session::forget('price');
-                Session::forget('type');
                 return response()->json(['code'=>200]);
+
+
+}
+public function notifyOm(){
+    $data=file_get_contents('php://input');
+    $payload=json_decode($data,true);
+
+    //je recupere mon txnid de la base de donnée et je le compare avec le present txnid de l'om
+
+    $payment=Payment::where('txnid',$payload->txnid)->first();
+    $now = Carbon::now();
+
+    if($payment && $payload->status==="SUCCESS" && $now->isBefore($payment->expire_at)){
+        $vote=Vote::find($payment->vote_id);
+        $vote->isPaid=true;
+        $vote->save();
+        //on enregistre le vote lié a un candidat
+        $saveCandidate=$this->saveCandidate($vote->candidate_id,$payment->score,$payment->amount,"Om");
     }
+
+}
+public function notifyMomo(){
+    $data=file_get_contents('php://input');
+    $payload=json_decode($data,true);
+
+    //je recupere mon txnid de la base de donnée et je le compare avec le present txnid de l'om
+
+   return $payload;
 
 }
 
     public function saveCandidate($candidateId,$score,$price,$type){
-        $vote=new Vote;
-            $vote->isPaid=true;
-            $vote->candidate_id=$candidateId;
-            if($vote->save()){
+
                 $candidate=Candidate::find($candidateId);
                 $candidate->score=$candidate->score+$score;
                 $candidate->save();
-                $payment=new Payment;
-                $payment->vote_id=$vote->id;
-                $payment->amount=$price;
-                $payment->payment_type=$type;
-                $payment->save();
-                Session::forget('isView');
+                //Session::forget('isView');
                 return true;
-            }
+
     }
 
-    public function notificationOm(){
-        $data=file_get_contents('php://input');
-        $payload=json_decode($data,true);
-    }
+
 }

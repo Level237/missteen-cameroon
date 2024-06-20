@@ -43,9 +43,14 @@ Route::get('/dashboard', function () {
 Route::get('generate/messageId/{token}/{price}/{number}',[MomoController::class,'getPay']);
 Route::get('redirect/profile',[PageController::class,'redirect'])->name('redirect.profile');
 Route::get('jeVotePour/{slug}',[PageController::class,'vote'])->name('candidate.vote');
+
+//Om routes
 Route::get('access/{price}/{slug}/{vote}/{candidateId}/{type}',[VoteController::class,'payment']);
-Route::get('validation/{token}/{payToken}/{number}/{amount}/{candidateId}',[VoteController::class,'paymentValidation']);
+Route::get('validation/{token}/{payToken}/{number}/{amount}/{candidateId}/{vote}',[VoteController::class,'paymentValidation']);
+Route::post('notify/om',[VoteController::class,"notifyOm"]);
 Route::get('/status/{token}/{payToken}/{price}/{slug}/{vote}/{candidateId}/{type}',[VoteController::class,'getPaymentStatus']);
+
+
 Route::get('/candidate/{slug}',[PageController::class,'profile'])->name('candidate.profile');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -60,5 +65,6 @@ Route::get('comming-soon',function(){
 Route::get('list/votes',[PageController::class,'listVote'])->name('list.vote');
 Route::get('init/pay/momo/{price}/{number}/{candidateId}/{vote}',[MomoController::class,'initPay']);
 Route::get('status/pay/momo/{messageId}/{token}',[MomoController::class,'getStatus']);
+
 
 require __DIR__.'/auth.php';

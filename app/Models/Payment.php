@@ -13,7 +13,8 @@ class Payment extends Model
     protected $fillable=[
         'vote_id',
         'amount',
-        'payment_type'
+        'payment_type',
+        'score'
     ];
 
     public function vote(){

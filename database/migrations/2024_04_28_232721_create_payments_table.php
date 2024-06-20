@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('amount');
             $table->string('payment_type');
             $table->string('txnid')->nullable();
+            $table->string('score');
+            $table->timestamp('expire_at')->nullable();
             $table->timestamps();
         });
     }
