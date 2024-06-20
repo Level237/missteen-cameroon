@@ -84,6 +84,7 @@ public function notifyOm(){
         $vote->save();
         //on enregistre le vote lié a un candidat
         $saveCandidate=$this->saveCandidate($vote->candidate_id,$payment->score,$payment->amount,"Om");
+        return response()->json(['message'=>"accepted"]);
     }
 
 }
@@ -93,7 +94,7 @@ public function notifyMomo(){
 
     //je recupere mon txnid de la base de donnée et je le compare avec le present txnid de l'om
 
-   return $payload;
+   return $data;
 
 }
 

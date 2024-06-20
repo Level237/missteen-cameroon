@@ -23,6 +23,7 @@ Route::get('/', function () {
     return view('Homepage');
 });
 
+Route::post('notify/momo',[VoteController::class,'notifyMomo']);
 Route::get('/inscription',[PageController::class,'inscription'])->name('inscription');
 Route::get('test',function(){
     return view('test');
