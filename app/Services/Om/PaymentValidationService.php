@@ -11,7 +11,7 @@ class PaymentValidationService{
             "channelUserMsisdn"=>"659924757",
             "amount"=>$amount,
             "subscriberMsisdn"=>$number,
-            "notifUrl"=>"https://www.test.missteencameroon.org/notify/om",
+            "notifUrl"=>"https://hook.eu2.make.com/fhb8jjq097ciqzi6kslweyk4u7h0w82l",
             "pin"=>"1470",
             "orderId"=>"order123",
             "description"=>"Votes des candidats miss teen",
