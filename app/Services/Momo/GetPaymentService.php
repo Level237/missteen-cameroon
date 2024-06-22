@@ -9,7 +9,7 @@ class GetPaymentService{
         $response=Http::asJson()->withToken($token)
         ->withBody(json_encode([
             'API_MUT' =>[
-                "notifUrl"=>"https://hook.eu2.make.com/fhb8jjq097ciqzi6kslweyk4u7h0w82l",
+                "notifUrl"=>"https://eo2n4ajjbzekju.m.pipedream.net",
                 'subscriberMsisdn' =>$number,
                 'description' => 'Vote d\'une candidate',
                 'amount' =>$price,

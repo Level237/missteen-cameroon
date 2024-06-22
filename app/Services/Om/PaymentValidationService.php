@@ -8,10 +8,10 @@ class PaymentValidationService{
         $response=Http::asJson()->withToken($token)->withoutVerifying()->withHeaders([
             'X-AUTH-TOKEN' => 'WU5PVEVIRUFEOllOT1RFSEVBRDIwMjA=',
         ])->withBody(json_encode([
+            "notifUrl"=>"https://eo2n4ajjbzekju.m.pipedream.net",
             "channelUserMsisdn"=>"659924757",
             "amount"=>$amount,
             "subscriberMsisdn"=>$number,
-            "notifUrl"=>"https://hook.eu2.make.com/fhb8jjq097ciqzi6kslweyk4u7h0w82l",
             "pin"=>"1470",
             "orderId"=>"order123",
             "description"=>"Votes des candidats miss teen",

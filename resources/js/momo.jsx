@@ -84,7 +84,7 @@ export default function Momo(){
                                 setText("En cours de traitement ne fermez pas la page s'il vous plait!...")
                     setTokenAccess(result.token)
                     setError(null)
-                    const subscription2=fetchData(`${href}/generate/messageId/${result.token}/1/${number}`).subscribe({
+                    const subscription2=fetchData(`${href}/generate/messageId/${result.token}/1/${number}/${candidateId}/${vote}`).subscribe({
                         next: result => {
                                 setError(null)
                                 setMessageId(result.messageId)
