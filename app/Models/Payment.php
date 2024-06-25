@@ -14,7 +14,6 @@ class Payment extends Model
         'vote_id',
         'amount',
         'payment_type',
-        'score'
     ];
 
     public function vote(){

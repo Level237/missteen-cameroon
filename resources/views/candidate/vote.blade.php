@@ -6,6 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite('resources/css/app.css')
     <title>@yield("title") </title>
+<script>
+
+    history.pushState(null, null, window.location.href);
+window.addEventListener('popstate', function(event) {
+    alert('Vous ne pouvez pas quittez la page veuillez patientez la fin de tout le processus de paiement');
+    history.pushState(null, null, window.location.href);
+});
+</script>
 </head>
 <body class="overflow-x-hidden ">
     @include('layouts.frontend.nav-bar')
@@ -26,6 +34,7 @@
 
 </section>
 </body>
+
 @viteReactRefresh
 @vite(['resources/js/app.jsx'])
 @vite(['resources/js/momo.jsx'])

@@ -20,31 +20,34 @@ class VoteController extends Controller
         $accessToken=(new GetAccessTokenService())->getAccessToken();
 
         $payToken=(new InitPaymentService())->index($accessToken->access_token);
+        if($payToken){
+            Session::put("price",$price);
+            Session::save();
+            Session::put('type',"Om");
+            Session::save();
+            Session::put("candidateId",$candidateId);
+            Session::save();
+            Session::put("vote",$vote);
+            Session::save();
+            Session::put('token',$accessToken->access_token);
+            Session::save();
+            Session::put('payToken',$payToken);
+            Session::save();
 
+        }
         return response()->json(['token'=>$accessToken->access_token,'payToken'=>$payToken],200);
+
     }
 
     public function paymentValidation($token,$payToken,$number,$amount,$candidateId,$score){
         $validation=(new ValidationPayment())->paymentValidation($token,$payToken,$number,$amount);
         $response=json_decode($validation);
         $message=$response->message ?? null;
-        $txnid=$response->data->txnid ?? null;
+        //$txnid=$response->data->txnid ?? null;
         if($message=='60019 :: Le solde du compte du payeur est insuffisant'){
 
             return response()->json(["message"=>'Votre Credit est insuffisant',"code"=>20]);
         }
-        $vote=new Vote;
-        $vote->isPaid=false;
-        $vote->candidate_id=$candidateId;
-        $vote->save();
-        $payment=new Payment;
-        $payment->vote_id=$vote->id;
-        $payment->amount=$amount;
-        $payment->payment_type="Om";
-        $payment->expire_at=Carbon::now()->addMinutes(10);
-        $payment->txnid=$txnid;
-        $payment->score=$score;
-        $payment->save();
         return response()->json(["message"=>'Votre paiement a bien été initialiser,veuillez confirmer votre paiement',"code"=>21]);
     }
 

@@ -84,7 +84,7 @@ export default function Momo(){
                                 setText("En cours de traitement ne fermez pas la page s'il vous plait!...")
                     setTokenAccess(result.token)
                     setError(null)
-                    const subscription2=fetchData(`${href}/generate/messageId/${result.token}/1/${number}/${candidateId}/${vote}`).subscribe({
+                    const subscription2=fetchData(`${href}/generate/messageId/${result.token}/${price}/${number}/${candidateId}/${vote}`).subscribe({
                         next: result => {
                                 setError(null)
                                 setMessageId(result.messageId)
@@ -138,17 +138,13 @@ export default function Momo(){
                                 setInputError('')
                             }else if(result.status=="SUCCESSFUL" && isMounted.current===true){
                                 isMounted.current=false
-                                const validation = fetchData(`${href}/payment/successfull/momo/${candidateId}/${vote}/${price}/Momo`).subscribe({
-                                    next: result => {
-                                        if(result.code===200){
-                                            setSuccess(true)
+                                setStatus("SUCCESSFUL")
+                                setSuccess(true)
+                                setTokenAccess(null)
+                                setMessageId(null)
+                                setVisibleCard(false)
+                                setText(null)
 
-                                            setVisibleCard(false)
-                                            setText(null)
-
-                                        }
-                                    },
-                                })
                             }
 
 

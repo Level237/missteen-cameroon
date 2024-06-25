@@ -8,7 +8,7 @@ class PaymentValidationService{
         $response=Http::asJson()->withToken($token)->withoutVerifying()->withHeaders([
             'X-AUTH-TOKEN' => 'WU5PVEVIRUFEOllOT1RFSEVBRDIwMjA=',
         ])->withBody(json_encode([
-            "notifUrl"=>"https://eo2n4ajjbzekju.m.pipedream.net",
+            "notifUrl"=>"https://webhook.site/8e21abbe-a7d1-4368-b13b-bf7c5d34e7e0",
             "channelUserMsisdn"=>"659924757",
             "amount"=>$amount,
             "subscriberMsisdn"=>$number,

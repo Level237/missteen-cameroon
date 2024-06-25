@@ -24,60 +24,45 @@ class PageController extends Controller
 
     public function profile($slug){
         $candidate=Candidate::where('candidate_slug',$slug)->firstOrFail();
-        if(Session::has('token') && Session::has('payToken') && Session::has('candidateId') && Session::get('candidateId')===$candidate->id){
-
-            if(Session::get('candidateId')===$candidate->id){
-                $validation=(new StatusPaymentService())->status(Session::get('token'),Session::get('payToken'));
-                $response=json_decode($validation);
-                if($response==="SUCCESSFULL"){
-                    $saveCandidate=$this->saveCandidate(Session::get('candidateId'),Session::get('vote'),Session::get('price'),"Om");
-                    if($saveCandidate==true){
+        if(Session::has('payToken') && Session::get('type')==="Om" && Session::get('candidateId')==$candidate->id){
+            $validation=(new StatusPaymentService())->status(Session::get('token'),Session::get('payToken'));
+            $response=json_decode($validation);
+            if($validation=="SUCCESSFULL"){
+                $saveCandidate=$this->saveCandidate(Session::get('candidateId'),Session::get('vote'),Session::get('price'),"Om");
                         Session::forget('payToken');
                         Session::forget('token');
                         Session::forget('candidateId');
                         Session::forget('vote');
                         Session::forget('price');
                         Session::forget('type');
-                    }
-                }
-                Session::forget('payToken');
-                        Session::forget('token');
-                        Session::forget('candidateId');
-                        Session::forget('vote');
-                        Session::forget('price');
-                        Session::forget('type');
+                        //return "success";
+                        return to_route('candidate.profile',$slug);
             }
 
 
+            //return Session::forget('payToken');
         }
-        if(Session::has('tokenMomo') && Session::has('messageId') && Session::has('candidateId')){
-            if(Session::get('candidateId')===$candidate->id){
-                $status=(new StatusService())->getStatus(Session::has('tokenMomo'),Session::has('messageId'));
-                $response=json_decode($status);
-                if($response==="SUCCESSFULL"){
-                    $saveCandidate=$this->saveCandidate(Session::get('candidateId'),Session::get('vote'),Session::get('price'),"Momo");
-                    if($saveCandidate==true){
-                        Session::forget('messageId');
-                Session::forget('tokenMomo');
-                Session::forget('candidateId');
-                Session::forget('vote');
-                Session::forget('price');
-                Session::forget('type');
-                    }
-                }
+        if(Session::has('tokenMomo') && Session::get('type')==="Momo" && Session::get('candidateId')==$candidate->id){
+            $status=(new StatusService())->getStatus(Session::get('messageId'),Session::get('tokenMomo'));
+            if($status==="SUCCESSFUL"){
+                $saveCandidate=$this->saveCandidate(Session::get('candidateId'),Session::get('vote'),Session::get('price'),"Momo");
                 Session::forget('messageId');
                 Session::forget('tokenMomo');
                 Session::forget('candidateId');
+                Session::forget("slug");
                 Session::forget('vote');
                 Session::forget('price');
                 Session::forget('type');
+                return to_route('candidate.profile',$slug);
             }
-    }
+
+        }
         return view('candidate.profile',compact('candidate'));
     }
 
     public function vote($slug,Request $request){
         $type=$request->type;
+
         if(Session::has('token')){
             Session::forget('token');
             Session::forget('payToken');
@@ -120,7 +105,7 @@ class PageController extends Controller
                 $payment->amount=$price;
                 $payment->payment_type=$type;
                 $payment->save();
-                Session::forget('isView');
+                //Session::forget('isView');
                 return true;
             }
     }

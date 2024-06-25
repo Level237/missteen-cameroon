@@ -91,7 +91,7 @@ export default function App(){
 
                             setVisibleCard(false)
                             setText("En cours de traitement ne fermez pas la page s'il vous plait!...")
-                const subscription2=fetchData(`${href}/validation/${result.token}/${result.payToken}/${number}/1/${candidateId}/${vote}`).subscribe({
+                const subscription2=fetchData(`${href}/validation/${result.token}/${result.payToken}/${number}/${price}/${candidateId}/${vote}`).subscribe({
                     next: result => {
                         if(result.code===20){
                             setError(t.message)
@@ -150,20 +150,13 @@ export default function App(){
                                 setInputError('')
                             }else if(result.status=="SUCCESSFULL" && isMounted.current===true){
                                 isMounted.current=false
+                                setSuccess(true)
                                 setStatus("SUCCESSFULL")
-                                const validation = fetchData(`${href}/payment/successfull/${candidateId}/${vote}/${price}/om`).subscribe({
-                                    next: result => {
-                                        if(result.code===200){
-                                            setTokenAccess(null)
+                                setTokenAccess(null)
                                             setPayToken(null)
-                                            setSuccess(true)
+
                                             setVisibleCard(false)
                                             setText(null)
-                                        }
-                                    },
-                                })
-
-
                             }
 
 
